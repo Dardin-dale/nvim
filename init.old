@@ -1,0 +1,35 @@
+" Wooho my first vimrc
+
+call plug#begin('~/AppData/Local/nvim-data/plugged')
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+
+Plug 'rust-lang/rust.vim'
+Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
+Plug 'kyazdani42/nvim-tree.lua'
+Plug 'gruvbox-community/gruvbox'
+
+Plug 'ThePrimeagen/vim-be-good'
+call plug#end()
+" :PlugInstall to install plugin
+
+colorscheme gruvbox
+highlight Normal guibg=none
+
+let mapleader = " "
+" mode lhs rhs
+" example nnoremap <leader>ps [COMMAND]
+" n - normal mode, nore - no recursive, map - map keys
+inoremap <C-c> <esc>
+
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+
+augroup Logan
+    autocmd!
+    autocmd BufWritePre * :call TrimWhitespace()
+augroup END
