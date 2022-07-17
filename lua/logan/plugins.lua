@@ -47,23 +47,20 @@ return packer.startup(function(use)
     use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
     use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
     use({"neoclide/coc.nvim", branch='release'})
+    use 'kyazdani42/nvim-web-devicons' -- optional, for file icons
     use({
       "NTBBloodbath/galaxyline.nvim",
       -- your statusline
       config = function()
         require("galaxyline.themes.eviline")
       end,
-      -- some optional icons
-      requires = { "kyazdani42/nvim-web-devicons", opt = true }
     }) 
     use {
         'kyazdani42/nvim-tree.lua',
-        requires = {
-            'kyazdani42/nvim-web-devicons', -- optional, for file icons
-        },
         tag = 'nightly' -- optional, updated every week. (see issue #1193)
     }
     use "numToStr/Comment.nvim" -- Easily comment stuff
+
 
     -- cmp plugins
     use {"hrsh7th/nvim-cmp"} -- The completion plugin
