@@ -27,6 +27,17 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 
 keymap("n", "<leader>e", ":Lex 30<cr>", opts)
 
+--Telescope
+--nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+--nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+--nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+--nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+keymap("n", "<leader>ff", ":lua require('telescope.builtin').find_files()<cr>", opts)
+keymap("n", "<C-p>", ":lua require('telescope.builtin').find_files()<cr>", opts)
+keymap("n", "<leader>fg", ":lua require('telescope.builtin').live_grep()<cr>", opts)
+keymap("n", "<leader>fb", ":lua require('telescope.builtin').buffers()<cr>", opts)
+keymap("n", "<leader>fh", ":lua require('telescope.builtin').help_tags()<cr>", opts)
+
 --Window resize
 keymap("n", "<leader>rp", ":resize 120<CR>", opts)
 keymap("n", "<leader>+", ":vertical resize -5<CR>", opts)
