@@ -60,7 +60,9 @@ return packer.startup(function(use)
         tag = 'nightly' -- optional, updated every week. (see issue #1193)
     }
     use "numToStr/Comment.nvim" -- Easily comment stuff
-
+    -- using packer.nvim
+    use {'akinsho/bufferline.nvim', tag = "v2.*"}
+    use "moll/vim-bbye"
 
     -- cmp plugins
     use {"hrsh7th/nvim-cmp"} -- The completion plugin
@@ -76,8 +78,8 @@ return packer.startup(function(use)
     use {"rafamadriz/friendly-snippets"} -- a bunch of snippets to use
 
     -- LSP 
-    use "neovim/nvim-lspconfig"
     use "williamboman/nvim-lsp-installer"
+    use "neovim/nvim-lspconfig"
 
     --Telescope
     use "nvim-telescope/telescope.nvim"     
