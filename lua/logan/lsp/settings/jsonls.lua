@@ -1,104 +1,197 @@
-local M = {}
+local default_schemas = {}
+local status_ok, jsonls_settings = pcall(require, "nlspsettings.jsonls")
+if status_ok then
+  default_schemas = jsonls_settings.get_default_schemas()
+end
 
--- TODO: backfill this to template
-M.setup = function()
-  local signs = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
-  }
-
-  for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-  end
-
-  local config = {
-    -- disable virtual text
-    virtual_text = false,
-    -- show signs
-    signs = {
-      active = signs,
+local schemas = {
+  {
+    description = "TypeScript compiler configuration file",
+    fileMatch = {
+      "tsconfig.json",
+      "tsconfig.*.json",
     },
-    update_in_insert = true,
-    underline = true,
-    severity_sort = true,
-    float = {
-      focusable = false,
-      style = "minimal",
-      border = "rounded",
-      source = "always",
-      header = "",
-      prefix = "",
+    url = "https://json.schemastore.org/tsconfig.json",
+  },
+  {
+    description = "Lerna config",
+    fileMatch = { "lerna.json" },
+    url = "https://json.schemastore.org/lerna.json",
+  },
+  {
+    description = "Babel configuration",
+    fileMatch = {
+      ".babelrc.json",
+      ".babelrc",
+      "babel.config.json",
     },
-  }
+    url = "https://json.schemastore.org/babelrc.json",
+  },
+  {
+    description = "ESLint config",
+    fileMatch = {
+      ".eslintrc.json",
+      ".eslintrc",
+    },
+    url = "https://json.schemastore.org/eslintrc.json",
+  },
+  {
+    description = "Bucklescript config",
+    fileMatch = { "bsconfig.json" },
+    url = "https://raw.githubusercontent.com/rescript-lang/rescript-compiler/8.2.0/docs/docson/build-schema.json",
+  },
+  {
+    description = "Prettier config",
+    fileMatch = {
+      ".prettierrc",
+      ".prettierrc.json",
+      "prettier.config.json",
+    },
+    url = "https://json.schemastore.org/prettierrc",
+  },
+  {
+    description = "Vercel Now config",
+    fileMatch = { "now.json" },
+    url = "https://json.schemastore.org/now",
+  },
+  {
+    description = "Stylelint config",
+    fileMatch = {
+      ".stylelintrc",
+      ".stylelintrc.json",
+      "stylelint.config.json",
+    },
+    url = "https://json.schemastore.org/stylelintrc",
+  },
+  {
+    description = "A JSON schema for the ASP.NET LaunchSettings.json files",
+    fileMatch = { "launchsettings.json" },
+    url = "https://json.schemastore.org/launchsettings.json",
+  },
+  {
+    description = "Schema for CMake Presets",
+    fileMatch = {
+      "CMakePresets.json",
+      "CMakeUserPresets.json",
+    },
+    url = "https://raw.githubusercontent.com/Kitware/CMake/master/Help/manual/presets/schema.json",
+  },
+  {
+    description = "Configuration file as an alternative for configuring your repository in the settings page.",
+    fileMatch = {
+      ".codeclimate.json",
+    },
+    url = "https://json.schemastore.org/codeclimate.json",
+  },
+  {
+    description = "LLVM compilation database",
+    fileMatch = {
+      "compile_commands.json",
+    },
+    url = "https://json.schemastore.org/compile-commands.json",
+  },
+  {
+    description = "Config file for Command Task Runner",
+    fileMatch = {
+      "commands.json",
+    },
+    url = "https://json.schemastore.org/commands.json",
+  },
+  {
+    description = "AWS CloudFormation provides a common language for you to describe and provision all the infrastructure resources in your cloud environment.",
+    fileMatch = {
+      "*.cf.json",
+      "cloudformation.json",
+    },
+    url = "https://raw.githubusercontent.com/awslabs/goformation/v5.2.9/schema/cloudformation.schema.json",
+  },
+  {
+    description = "The AWS Serverless Application Model (AWS SAM, previously known as Project Flourish) extends AWS CloudFormation to provide a simplified way of defining the Amazon API Gateway APIs, AWS Lambda functions, and Amazon DynamoDB tables needed by your serverless application.",
+    fileMatch = {
+      "serverless.template",
+      "*.sam.json",
+      "sam.json",
+    },
+    url = "https://raw.githubusercontent.com/awslabs/goformation/v5.2.9/schema/sam.schema.json",
+  },
+  {
+    description = "Json schema for properties json file for a GitHub Workflow template",
+    fileMatch = {
+      ".github/workflow-templates/**.properties.json",
+    },
+    url = "https://json.schemastore.org/github-workflow-template-properties.json",
+  },
+  {
+    description = "golangci-lint configuration file",
+    fileMatch = {
+      ".golangci.toml",
+      ".golangci.json",
+    },
+    url = "https://json.schemastore.org/golangci-lint.json",
+  },
+  {
+    description = "JSON schema for the JSON Feed format",
+    fileMatch = {
+      "feed.json",
+    },
+    url = "https://json.schemastore.org/feed.json",
+    versions = {
+      ["1"] = "https://json.schemastore.org/feed-1.json",
+      ["1.1"] = "https://json.schemastore.org/feed.json",
+    },
+  },
+  {
+    description = "Packer template JSON configuration",
+    fileMatch = {
+      "packer.json",
+    },
+    url = "https://json.schemastore.org/packer.json",
+  },
+  {
+    description = "NPM configuration file",
+    fileMatch = {
+      "package.json",
+    },
+    url = "https://json.schemastore.org/package.json",
+  },
+  {
+    description = "JSON schema for Visual Studio component configuration files",
+    fileMatch = {
+      "*.vsconfig",
+    },
+    url = "https://json.schemastore.org/vsconfig.json",
+  },
+  {
+    description = "Resume json",
+    fileMatch = { "resume.json" },
+    url = "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  },
+}
 
-  vim.diagnostic.config(config)
-
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "rounded",
-  })
-
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = "rounded",
-  })
-end
-
-local function lsp_highlight_document(client)
-  -- Set autocommands conditional on server_capabilities
-  if client.resolved_capabilities.document_highlight then
-    vim.api.nvim_exec(
-      [[
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]],
-      false
-    )
+local function extend(tab1, tab2)
+  for _, value in ipairs(tab2) do
+    table.insert(tab1, value)
   end
+  return tab1
 end
 
-local function lsp_keymaps(bufnr)
-  local opts = { noremap = true, silent = true }
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
-  vim.api.nvim_buf_set_keymap(
-    bufnr,
-    "n",
-    "gl",
-    '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "rounded" })<CR>',
-    opts
-  )
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
-end
+local extended_schemas = extend(schemas, default_schemas)
 
-M.on_attach = function(client, bufnr)
-  if client.name == "tsserver" then
-    client.resolved_capabilities.document_formatting = false
-  end
-  lsp_keymaps(bufnr)
-  lsp_highlight_document(client)
-end
+local opts = {
+  settings = {
+    json = {
+      schemas = extended_schemas,
+    },
+  },
+  setup = {
+    commands = {
+      Format = {
+        function()
+          vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line "$", 0 })
+        end,
+      },
+    },
+  },
+}
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not status_ok then
-  return
-end
-
-M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
-
-return M
+return opts
