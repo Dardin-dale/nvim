@@ -10,7 +10,7 @@ keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.localleader = " "
 
--- Modes 
+-- Modes
 -- normal = n
 -- insert = i
 -- visual = v
@@ -49,6 +49,9 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- NVIMTree
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
+
+-- Formatting null_ls
+keymap("n", "<leader>f", ":Format<cr>", opts)
 
 -- Insert --
 keymap("i", "<C-c>", "<esc>", opts)

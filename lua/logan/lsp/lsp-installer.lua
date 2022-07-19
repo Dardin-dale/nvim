@@ -30,7 +30,7 @@ local rust_analyzer_opts = require("logan.lsp.settings.rust_analyzer")
 
 lspconfig.sumneko_lua.setup { on_attach = opts.on_attach, capabilities = opts.capabilities, settings = sumneko_opts }
 lspconfig.tsserver.setup { on_attach = opts.on_attach, capabilities = opts.capabilities, settings = tsserver_opts }
-lspconfig.rust_analyzer.setup { on_attach = opts.on_attach, capabilities = opts.capabilities, rust_analyzer_opts}
+lspconfig.rust_analyzer.setup { on_attach = opts.on_attach, capabilities = opts.capabilities, settings = rust_analyzer_opts}
 -- Register a handler that will be called for all installed servers.
 -- Alternatively, you may also register handlers on specific server instances instead (see example below).
 --lsp_installer.on_server_ready(function(server)
