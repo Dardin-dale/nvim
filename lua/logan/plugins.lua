@@ -63,6 +63,9 @@ return packer.startup(function(use)
     -- using packer.nvim
     use { 'akinsho/bufferline.nvim', tag = "v2.*" }
     use "moll/vim-bbye"
+    use "lukas-reineke/indent-blankline.nvim" -- vertical tablines  
+
+    -- Terminal
     use { "akinsho/toggleterm.nvim", tag = 'v2.*' }
 
     -- cmp plugins
@@ -101,7 +104,8 @@ return packer.startup(function(use)
         'lewis6991/gitsigns.nvim',
         --tag = 'release' -- To use the latest release
     }
-
+    -- project
+    use "ahmedkhalf/project.nvim" 
     -- ColorSchemes --
     use "lunarvim/colorschemes"
     use 'folke/tokyonight.nvim'
