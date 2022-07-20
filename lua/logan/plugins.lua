@@ -64,6 +64,8 @@ return packer.startup(function(use)
     use { 'akinsho/bufferline.nvim', tag = "v2.*" }
     use "moll/vim-bbye"
     use "lukas-reineke/indent-blankline.nvim" -- vertical tablines  
+    use "xiyaowong/nvim-transparent" -- transparent background
+
 
     -- Terminal
     use { "akinsho/toggleterm.nvim", tag = 'v2.*' }
@@ -80,6 +82,7 @@ return packer.startup(function(use)
     -- snippets
     use { "L3MON4D3/LuaSnip" } --snippet engine
     use { "rafamadriz/friendly-snippets" } -- a bunch of snippets to use
+    use "heavenshell/vim-jsdoc"
 
     -- LSP
     use "williamboman/nvim-lsp-installer"
@@ -89,6 +92,8 @@ return packer.startup(function(use)
     --Telescope
     use "nvim-telescope/telescope.nvim"
     use "nvim-telescope/telescope-media-files.nvim"
+    
+    use "ThePrimeagen/harpoon"
 
     -- Treesitter
     use {

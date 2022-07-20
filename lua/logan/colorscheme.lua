@@ -6,3 +6,6 @@ if not status_ok then
     vim.notify("colorscheme " .. colorscheme .. " not found!")
     return
 end
+
+-- vim.g.transparent_enabled = true
+-- vim.g.tokyonight_transparent = vim.g.transparent_enabled
