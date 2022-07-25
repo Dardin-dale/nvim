@@ -40,8 +40,13 @@ keymap("n", "<leader>fh", ":lua require('telescope.builtin').help_tags()<cr>", o
 
 --Window resize
 keymap("n", "<leader>rp", ":resize 120<CR>", opts)
-keymap("n", "<leader>+", ":vertical resize -5<CR>", opts)
-keymap("n", "<leader>-", ":vertical resize +5<CR>", opts)
+keymap("n", "<leader>+", ":vertical resize +5<CR>", opts)
+keymap("n", "<leader>-", ":vertical resize -5<CR>", opts)
+-- Resize with arrows
+keymap("n", "<C-Up>", ":resize -5<CR>", opts)
+keymap("n", "<C-Down>", ":resize +5<CR>", opts)
+keymap("n", "<C-Left>", ":vertical resize -5<CR>", opts)
+keymap("n", "<C-Right>", ":vertical resize +5<CR>", opts)
 
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)

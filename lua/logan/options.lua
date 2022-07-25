@@ -10,7 +10,7 @@ vim.opt.hidden = true
 vim.opt.errorbells = false
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = "%appdata%/.nvim/undodir"
+vim.opt.undodir = "C:/tools/.nvim/undodir"
 vim.opt.undofile = true
 vim.opt.incsearch = true
 vim.opt.scrolloff = 15
@@ -22,4 +22,5 @@ vim.opt.cmdheight = 2
 vim.opt.relativenumber = true
 vim.opt.updatetime=50
 vim.opt.shortmess:append "c"
+vim.opt.mouse = "a"
 --vim.cmd "set shortmess+=:c"
