@@ -70,6 +70,9 @@ nvim_tree.setup {
         ignore = true,
         timeout = 500,
     },
+    filters =  {
+        dotfiles = false,
+    },
     view = {
         width = 30,
         height = 30,
