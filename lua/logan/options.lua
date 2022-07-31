@@ -24,3 +24,5 @@ vim.opt.updatetime=50
 vim.opt.shortmess:append "c"
 vim.opt.mouse = "a"
 --vim.cmd "set shortmess+=:c"
+vim.opt.laststatus = 3
+vim.opt.wrap = false
