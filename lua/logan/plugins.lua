@@ -67,6 +67,8 @@ return packer.startup(function(use)
 		tag = "nightly", -- optional, updated every week. (see issue #1193)
 	})
 	use("numToStr/Comment.nvim") -- Easily comment stuff
+    use("folke/twilight.nvim") -- focus in zen mode
+    use("Pocco81/true-zen.nvim") --zen mode
 	-- using packer.nvim
 	use({ "akinsho/bufferline.nvim", tag = "v2.*" })
 	use("moll/vim-bbye")
