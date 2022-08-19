@@ -84,6 +84,7 @@ return packer.startup(function(use)
 	use({ "saadparwaiz1/cmp_luasnip" }) -- snippet completions
 	use({ "hrsh7th/cmp-nvim-lsp" }) -- lsp autocompletions
 	use({ "hrsh7th/cmp-nvim-lua" })
+    use({'saecki/crates.nvim'})
 
 	-- snippets
 	use({ "L3MON4D3/LuaSnip" }) --snippet engine
