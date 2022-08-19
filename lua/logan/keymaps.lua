@@ -82,3 +82,11 @@ keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
 keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+
+
+-- Zen Mode --
+keymap("n", "<leader>zn", ":TZNarrow<CR>", opts)
+keymap("v", "<leader>zn", ":'<,'>TZNarrow<CR>", opts)
+keymap("n", "<leader>zf", ":TZFocus<CR>", opts)
+keymap("n", "<leader>zm", ":TZFocus<CR>", opts)
+keymap("n", "<leader>za", ":TZAtaraxis<CR>", opts)
