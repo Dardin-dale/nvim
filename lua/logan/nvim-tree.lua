@@ -72,6 +72,7 @@ nvim_tree.setup {
     },
     filters =  {
         dotfiles = false,
+        -- custom = {"^.env$"}
     },
     view = {
         width = 30,
