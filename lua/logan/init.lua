@@ -6,6 +6,7 @@ require "logan.autocomplete"
 require "logan.lsp"
 require "logan.telescope"
 require "logan.treesitter"
+require "logan.alpha" --Dashboard on open
 require "logan.autopairs"
 require "logan.comment"
 require "logan.gitsigns"

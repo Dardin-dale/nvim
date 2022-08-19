@@ -75,6 +75,9 @@ return packer.startup(function(use)
 	use("lukas-reineke/indent-blankline.nvim") -- vertical tablines
 	use("xiyaowong/nvim-transparent") -- transparent background
 
+    use('goolord/alpha-nvim') -- startup nvim home page
+
+
 	-- Terminal
 	use({ "akinsho/toggleterm.nvim", tag = "v2.*" })
 
