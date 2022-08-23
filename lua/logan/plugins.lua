@@ -108,6 +108,7 @@ return packer.startup(function(use)
 	use("nvim-telescope/telescope-media-files.nvim")
     use { "kkharji/sqlite.lua" } -- required for frecency
     use("nvim-telescope/telescope-frecency.nvim")
+    use {'nvim-telescope/telescope-ui-select.nvim' }
 
 	use("ThePrimeagen/harpoon")
 

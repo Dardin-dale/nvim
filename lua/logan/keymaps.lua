@@ -55,7 +55,7 @@ keymap("n", "<leader>m0", ":lua require('harpoon.ui').nav_file(10)<cr>", opts)
 --Sessions
 keymap("n", "<leader>ns", ":SessionManager save_current_session<cr>", opts)
 keymap("n", "<leader>fs", ":SessionManager load_session<cr>", opts)
-keymap("n", "<leader>cs", ":SessionManager load_current_dir_session<cr>", opts)
+keymap("n", "<leader>cs", ":SessionManager! load_current_dir_session<cr>", opts)
 keymap("n", "<leader>dds", ":SessionManager delete_session <cr>", opts)
 
 --Window resize

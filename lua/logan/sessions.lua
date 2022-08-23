@@ -5,4 +5,6 @@ if not status_ok then
 end
 
 
-sessions.setup{}
+sessions.setup {
+    autoload_mode = require('session_manager.config').AutoloadMode.Disabled, -- LastSession, Disabled, CurrentDir
+}
