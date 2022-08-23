@@ -68,7 +68,8 @@ return packer.startup(function(use)
 	})
 	use("numToStr/Comment.nvim") -- Easily comment stuff
     use("folke/twilight.nvim") -- focus in zen mode
-    use("Pocco81/true-zen.nvim") --zen mode
+    --use("Pocco81/true-zen.nvim") --zen mode
+    use("folke/zen-mode.nvim")
 	-- using packer.nvim
 	use({ "akinsho/bufferline.nvim", tag = "v2.*" })
 	use("moll/vim-bbye")
@@ -77,6 +78,7 @@ return packer.startup(function(use)
 
     use('goolord/alpha-nvim') -- startup nvim home page
 
+    use('Shatur/neovim-session-manager') --Sessions
 
 	-- Terminal
 	use({ "akinsho/toggleterm.nvim", tag = "v2.*" })
@@ -104,6 +106,8 @@ return packer.startup(function(use)
 	--Telescope
 	use("nvim-telescope/telescope.nvim")
 	use("nvim-telescope/telescope-media-files.nvim")
+    use { "kkharji/sqlite.lua" } -- required for frecency
+    use("nvim-telescope/telescope-frecency.nvim")
 
 	use("ThePrimeagen/harpoon")
 

@@ -6,4 +6,3 @@ if not status_ok then
     return
 end
 
-vim.g.neovide_cursor_vfx_mode = "PixieDust"
