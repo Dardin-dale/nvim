@@ -26,6 +26,7 @@ dash.section.buttons.val = {
 		dash.button("SPC f r", "  Frecency/MRU"),
 		dash.button("SPC f g", "  Find word"),
 		dash.button("SPC f m", "  Jump to bookmarks"),
+		dash.button("SPC f s", "  Pick Session"),
 		dash.button("SPC s l", "  Open last session", ":SessionManager load_last_session<cr>"),
         --[[ dash.button( "s", "  > Settings" , ":e %VIMRC% <CR>"), ]]
         dash.button( "q", "  Quit NVIM" , ":qa<CR>"),

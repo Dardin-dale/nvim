@@ -33,7 +33,7 @@ keymap("n", "<C-p>", ":lua require('telescope.builtin').find_files()<cr>", opts)
 keymap("n", "<leader>fg", ":lua require('telescope.builtin').live_grep()<cr>", opts)
 keymap("n", "<leader>fb", ":lua require('telescope.builtin').buffers()<cr>", opts)
 keymap("n", "<leader>fh", ":lua require('telescope.builtin').help_tags()<cr>", opts)
-keymap("n", "<leader>fl", ":lua require('telescope.builtin').old_files()<cr>", opts)
+keymap("n", "<leader>fl", ":lua require('telescope.builtin').oldfiles()<cr>", opts)
 keymap("n", "<leader>fr", ":lua require('telescope').extensions.frecency.frecency()<CR>", opts)
 
 --Marks
