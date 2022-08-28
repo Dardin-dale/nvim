@@ -72,6 +72,9 @@ keymap("n", "<C-Right>", ":vertical resize +5<CR>", opts)
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
+-- Buffer delete
+keymap("n", "<leader>bd", ":Bdelete! %d<cr>", opts)
+
 -- NVIMTree
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 
