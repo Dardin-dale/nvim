@@ -5,6 +5,4 @@ if not status_ok then
 end
 
 
--- harpoon.setup {
---
--- }
+harpoon.setup()

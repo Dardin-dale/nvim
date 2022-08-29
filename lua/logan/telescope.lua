@@ -3,7 +3,13 @@ if not status_ok then
     return
 end
 
+local status_ok, themes = pcall(require, "telescope.themes")
+if not status_ok then
+    return
+end
+
 telescope.load_extension('media_files')
+telescope.load_extension('ui-select')
 
 local actions = require "telescope.actions"
   
@@ -28,6 +34,9 @@ telescope.setup {
         media_files = {
             filetypes = {"png", "webp", "jpg", "jpeg"},
             find_cmd = "rg" -- find command (defaults to `fd`)
+        },
+        ['ui-select'] = {
+            themes.get_dropdown
         }
     }
 }

@@ -28,15 +28,35 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 -- keymap("n", "<leader>e", ":Lex 30<cr>", opts)
 
 --Telescope
---nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
---nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
---nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
---nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 keymap("n", "<leader>ff", ":lua require('telescope.builtin').find_files()<cr>", opts)
 keymap("n", "<C-p>", ":lua require('telescope.builtin').find_files()<cr>", opts)
 keymap("n", "<leader>fg", ":lua require('telescope.builtin').live_grep()<cr>", opts)
 keymap("n", "<leader>fb", ":lua require('telescope.builtin').buffers()<cr>", opts)
 keymap("n", "<leader>fh", ":lua require('telescope.builtin').help_tags()<cr>", opts)
+keymap("n", "<leader>fl", ":lua require('telescope.builtin').oldfiles()<cr>", opts)
+keymap("n", "<leader>fr", ":lua require('telescope').extensions.frecency.frecency()<CR>", opts)
+
+--Marks
+keymap("n", "<leader>fm", ":lua require('harpoon.ui').toggle_quick_menu()<cr>", opts)
+keymap("n", "<leader>ma", ":lua require('harpoon.ui').add_file()<cr>", opts)
+keymap("n", "<leader>mn", ":lua require('harpoon.ui').nav_next()<cr>", opts)
+keymap("n", "<leader>mb", ":lua require('harpoon.ui').nav_prev()<cr>", opts)
+keymap("n", "<leader>m1", ":lua require('harpoon.ui').nav_file(1)<cr>", opts)
+keymap("n", "<leader>m2", ":lua require('harpoon.ui').nav_file(2)<cr>", opts)
+keymap("n", "<leader>m3", ":lua require('harpoon.ui').nav_file(3)<cr>", opts)
+keymap("n", "<leader>m4", ":lua require('harpoon.ui').nav_file(4)<cr>", opts)
+keymap("n", "<leader>m5", ":lua require('harpoon.ui').nav_file(5)<cr>", opts)
+keymap("n", "<leader>m6", ":lua require('harpoon.ui').nav_file(6)<cr>", opts)
+keymap("n", "<leader>m7", ":lua require('harpoon.ui').nav_file(7)<cr>", opts)
+keymap("n", "<leader>m8", ":lua require('harpoon.ui').nav_file(8)<cr>", opts)
+keymap("n", "<leader>m9", ":lua require('harpoon.ui').nav_file(9)<cr>", opts)
+keymap("n", "<leader>m0", ":lua require('harpoon.ui').nav_file(10)<cr>", opts)
+
+--Sessions
+keymap("n", "<leader>ns", ":SessionManager save_current_session<cr>", opts)
+keymap("n", "<leader>fs", ":SessionManager load_session<cr>", opts)
+keymap("n", "<leader>cs", ":SessionManager! load_current_dir_session<cr>", opts)
+keymap("n", "<leader>dds", ":SessionManager delete_session<cr>", opts)
 
 --Window resize
 keymap("n", "<leader>rp", ":resize 120<CR>", opts)
@@ -51,6 +71,9 @@ keymap("n", "<C-Right>", ":vertical resize +5<CR>", opts)
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
+
+-- Buffer delete
+keymap("n", "<leader>bd", ":Bdelete! %d<cr>", opts)
 
 -- NVIMTree
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
@@ -83,10 +106,14 @@ keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
+--GIT--
+keymap("n", "<leader>git", ":lua _LAZYGIT_TOGGLE()<CR>", opts)
+keymap("n", "<leader>node", ":lua _NODE_TOGGLE()<cr>", opts)
 
 -- Zen Mode --
-keymap("n", "<leader>zn", ":TZNarrow<CR>", opts)
-keymap("v", "<leader>zn", ":'<,'>TZNarrow<CR>", opts)
-keymap("n", "<leader>zf", ":TZFocus<CR>", opts)
-keymap("n", "<leader>zm", ":TZFocus<CR>", opts)
-keymap("n", "<leader>za", ":TZAtaraxis<CR>", opts)
+--[[ keymap("n", "<leader>zn", ":TZNarrow<CR>", opts) ]]
+--[[ keymap("v", "<leader>zn", ":'<,'>TZNarrow<CR>", opts) ]]
+--[[ keymap("n", "<leader>zf", ":TZFocus<CR>", opts) ]]
+--[[ keymap("n", "<leader>zm", ":TZFocus<CR>", opts) ]]
+--[[ keymap("n", "<leader>za", ":TZAtaraxis<CR>", opts) ]]
+keymap("n", "<leader>zn", ":ZenMode<CR>", opts)

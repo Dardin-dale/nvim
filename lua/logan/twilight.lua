@@ -5,4 +5,6 @@ if not status_ok then
 end
 
 
-twilight.setup()
+twilight.setup {
+    context = 20
+}
