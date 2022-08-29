@@ -6,4 +6,7 @@ if not status_ok then
     return
 end
 
-vim.g.neovide_cursor_vfx_mode = "PixieDust"
+if vim.g.neovide == 1 then
+    vim.g.neovide_cursor_vfx_mode = "PixieDust"
+    vim.g.neovide_fullscreen = true
+end
