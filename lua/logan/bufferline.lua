@@ -40,6 +40,7 @@ bufferline.setup {
     tab_size = 21,
     diagnostics = false, -- | "nvim_lsp" | "coc",
     diagnostics_update_in_insert = false,
+    enforce_regular_tabs = false,
     -- diagnostics_indicator = function(count, level, diagnostics_dict, context)
     --   return "("..count..")"
     -- end,

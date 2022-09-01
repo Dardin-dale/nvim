@@ -73,7 +73,7 @@ keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Buffer delete
-keymap("n", "<leader>bd", ":Bdelete! %d<cr>", opts)
+keymap("n", "<leader>bd", ":Bdelete!<cr>", opts)
 
 -- NVIMTree
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
