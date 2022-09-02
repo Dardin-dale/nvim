@@ -79,6 +79,7 @@ return packer.startup(function(use)
     use('goolord/alpha-nvim') -- startup nvim home page
 
     use('Shatur/neovim-session-manager') --Sessions
+    use('Pocco81/auto-save.nvim')
 
 	-- Terminal
 	use({ "akinsho/toggleterm.nvim", tag = "v2.*" })
@@ -127,8 +128,6 @@ return packer.startup(function(use)
 		--tag = 'release' -- To use the latest release
 	})
 	use({ "akinsho/git-conflict.nvim" })
-	-- project
-	use("ahmedkhalf/project.nvim")
 	-- ColorSchemes --
 	use("lunarvim/colorschemes")
 	use("folke/tokyonight.nvim")

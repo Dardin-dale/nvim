@@ -38,7 +38,7 @@ keymap("n", "<leader>fr", ":lua require('telescope').extensions.frecency.frecenc
 
 --Marks
 keymap("n", "<leader>fm", ":lua require('harpoon.ui').toggle_quick_menu()<cr>", opts)
-keymap("n", "<leader>ma", ":lua require('harpoon.ui').add_file()<cr>", opts)
+keymap("n", "<leader>ma", ":lua require('harpoon.mark').add_file()<cr>", opts) --vim.api.nvim_buf_get_name(0)
 keymap("n", "<leader>mn", ":lua require('harpoon.ui').nav_next()<cr>", opts)
 keymap("n", "<leader>mb", ":lua require('harpoon.ui').nav_prev()<cr>", opts)
 keymap("n", "<leader>m1", ":lua require('harpoon.ui').nav_file(1)<cr>", opts)
@@ -73,7 +73,7 @@ keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Buffer delete
-keymap("n", "<leader>bd", ":Bdelete! %d<cr>", opts)
+keymap("n", "<leader>bd", ":Bdelete!<cr>", opts)
 
 -- NVIMTree
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
