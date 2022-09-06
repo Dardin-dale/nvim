@@ -79,7 +79,7 @@ return packer.startup(function(use)
     use('goolord/alpha-nvim') -- startup nvim home page
 
     use('Shatur/neovim-session-manager') --Sessions
-    use('Pocco81/auto-save.nvim')
+    --[[ use('Pocco81/auto-save.nvim') ]]
 
 	-- Terminal
 	use({ "akinsho/toggleterm.nvim", tag = "v2.*" })

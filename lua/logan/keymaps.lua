@@ -4,7 +4,6 @@ local term_opts = { silent = true }
 --shorten function name
 local keymap = vim.api.nvim_set_keymap
 
-
 -- Space as Leader key
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
@@ -72,8 +71,9 @@ keymap("n", "<C-Right>", ":vertical resize +5<CR>", opts)
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
--- Buffer delete
-keymap("n", "<leader>bd", ":Bdelete!<cr>", opts)
+-- Buffers
+keymap("n", "<leader>bd", ":Bdelete!<cr>", opts) -- delete buffer
+keymap("n", "<leader>w", ":w<cr>", opts) -- write buffer
 
 -- NVIMTree
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
