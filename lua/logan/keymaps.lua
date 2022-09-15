@@ -79,7 +79,7 @@ keymap("n", "<C-s>", ":w<cr>", opts) -- write buffer
 -- NVIMTree
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 
--- Formatting null_ls
+-- Formatting/null_ls
 keymap("n", "<leader>f", ":Format<cr>", opts)
 
 -- Insert --
@@ -107,6 +107,17 @@ keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
 keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+
+-- Debugging --
+keymap('n', "<F4>", ":lua require('dap').continue()<CR>", opts)
+keymap('n', "<F2>", ":lua require('dap').step_over()<CR>", opts)
+keymap('n', "<F1>", ":lua require('dap').step_into()<CR>", opts)
+keymap('n', "<F3>", ":lua require('dap').step_out()<CR>", opts)
+keymap('n', "<leader>b", ":lua require('dap').toggle_breakpoint()<CR>", opts)
+keymap('n', "<leader>B", ":lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opts)
+keymap('n', "<leader>lp", ":lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", opts)
+keymap('n', "<leader>dr", ":lua require('dap').repl.open()<CR>", opts)
+
 
 --GIT--
 keymap("n", "<leader>git", ":lua _LAZYGIT_TOGGLE()<CR>", opts)
