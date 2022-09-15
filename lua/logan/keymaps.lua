@@ -86,13 +86,12 @@ keymap("n", "<leader>f", ":Format<cr>", opts)
 keymap("i", "<C-c>", "<esc>", opts)
 
 -- Visual --
-
+keymap("v", "p", '"_dp', opts)
 -- move text
 keymap("v", "J", ":move .+1<CR>==", opts)
 keymap("v", "K", ":move .-2<CR>==", opts)
 keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "<A-k>", ":m .-2<CR>==", opts)
-keymap("v", "p", '"_dp', opts)
 
 -- Visual Block --
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
@@ -117,7 +116,6 @@ keymap('n', "<leader>b", ":lua require('dap').toggle_breakpoint()<CR>", opts)
 keymap('n', "<leader>B", ":lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opts)
 keymap('n', "<leader>lp", ":lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", opts)
 keymap('n', "<leader>dr", ":lua require('dap').repl.open()<CR>", opts)
-
 
 --GIT--
 keymap("n", "<leader>git", ":lua _LAZYGIT_TOGGLE()<CR>", opts)
