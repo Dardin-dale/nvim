@@ -22,4 +22,5 @@ require "logan.crates"
 require "logan.twilight"
 require "logan.zen"
 require "logan.sessions"
+require "logan.debug"
 --[[ require "logan.autosave" ]]

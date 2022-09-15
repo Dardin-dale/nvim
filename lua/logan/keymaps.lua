@@ -74,6 +74,7 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 -- Buffers
 keymap("n", "<leader>bd", ":Bdelete!<cr>", opts) -- delete buffer
 keymap("n", "<leader>w", ":w<cr>", opts) -- write buffer
+keymap("n", "<C-s>", ":w<cr>", opts) -- write buffer
 
 -- NVIMTree
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
@@ -98,6 +99,7 @@ keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
+keymap("x", "p", '"_dp', opts)
 
 -- Terminal --
 -- Better terminal navigation
