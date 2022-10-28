@@ -27,11 +27,13 @@ lsp_installer.setup({
 local sumneko_opts = require("logan.lsp.settings.sumneko_lua")
 local tsserver_opts = require("logan.lsp.settings.jsonls")
 local rust_analyzer_opts = require("logan.lsp.settings.rust_analyzer")
+local jdtls_opts = require("logan.lsp.settings.jdtls")
 
 lspconfig.sumneko_lua.setup { on_attach = opts.on_attach, capabilities = opts.capabilities, settings = sumneko_opts }
 lspconfig.tsserver.setup { on_attach = opts.on_attach, capabilities = opts.capabilities, settings = tsserver_opts }
 lspconfig.rust_analyzer.setup { on_attach = opts.on_attach, capabilities = opts.capabilities, settings = rust_analyzer_opts}
-lspconfig.jdtls.setup {opts.on_attach, capabilities = opts.capabilities, settings = jdtls_opts}
+lspconfig.jdtls.setup {opts.on_attach, capabilities = opts.capabilities, settings = jdtls_opts, cmd = { 'C:/Program Files/Java/jdt-language-server-1.9.0-202203031534/bin/jdtls' }}
+lspconfig.gopls.setup {opts.on_attach, capabilities = opts.capabilities}
 -- Register a handler that will be called for all installed servers.
 -- Alternatively, you may also register handlers on specific server instances instead (see example below).
 --lsp_installer.on_server_ready(function(server)

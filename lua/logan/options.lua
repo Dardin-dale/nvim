@@ -27,3 +27,4 @@ vim.opt.mouse = "a"
 vim.opt.laststatus = 3
 vim.opt.wrap = false
 vim.opt.autoread = true -- still need to manually trigger with e using terminal
+vim.opt.spell = true
