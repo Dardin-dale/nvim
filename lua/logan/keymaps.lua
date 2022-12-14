@@ -88,16 +88,16 @@ keymap("i", "<C-c>", "<esc>", opts)
 -- Visual --
 keymap("v", "p", '"_dp', opts)
 -- move text
-keymap("v", "J", ":move .+1<CR>==", opts)
-keymap("v", "K", ":move .-2<CR>==", opts)
+keymap("v", "J", ":m .+1<CR>==", opts)
+keymap("v", "K", ":m .-2<CR>==", opts)
 keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "<A-k>", ":m .-2<CR>==", opts)
 
 -- Visual Block --
-keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
-keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
-keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
-keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
+keymap("x", "J", ":m '>+1<CR>gv-gv", opts)
+keymap("x", "K", ":m '<-2<CR>gv-gv", opts)
+keymap("x", "<A-j>", ":m '>+1<CR>gv-gv", opts)
+keymap("x", "<A-k>", ":m '<-2<CR>gv-gv", opts)
 keymap("x", "p", '"_dp', opts)
 
 -- Terminal --
