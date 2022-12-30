@@ -19,7 +19,7 @@ require "logan.indentline"
 require "logan.harpoon"
 require "logan.gitconflict"
 require "logan.crates"
-require "logan.twilight"
+--[[ require "logan.twilight" ]] -- a little annoying
 require "logan.zen"
 require "logan.sessions"
 require "logan.debug"
