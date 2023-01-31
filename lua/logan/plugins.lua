@@ -100,9 +100,13 @@ return packer.startup(function(use)
     use("heavenshell/vim-jsdoc")
 
     -- LSP
-    use("williamboman/nvim-lsp-installer")
-    use("neovim/nvim-lspconfig")
+    use {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "neovim/nvim-lspconfig",
+    }
     use("jose-elias-alvarez/null-ls.nvim")
+    use 'mfussenegger/nvim-jdtls'
 
     --Debug
     use 'mfussenegger/nvim-dap'
