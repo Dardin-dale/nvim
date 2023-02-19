@@ -84,6 +84,11 @@ keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 -- Formatting/null_ls
 keymap("n", "<leader>f", ":Format<cr>", opts)
 
+-- Coments
+-- gcc - single line comment
+-- gbc - block comment
+-- [count]command - comment count lines
+
 -- Insert --
 keymap("i", "<C-c>", "<esc>", opts)
 

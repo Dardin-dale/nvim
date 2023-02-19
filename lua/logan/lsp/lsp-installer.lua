@@ -47,7 +47,7 @@ mason.setup({
 
 mason_lspconfig.setup {
     ensure_installed = {
-        'sumneko_lua',
+        'lua_ls',
         'rust_analyzer',
         'tsserver',
         'eslint',
@@ -62,10 +62,9 @@ local tsserver_opts = require("logan.lsp.settings.jsonls")
 local rust_analyzer_opts = require("logan.lsp.settings.rust_analyzer")
 local jdtls_opts = require("logan.lsp.settings.jdtls")
 
-
 mason_lspconfig.setup_handlers({
 function ()
-    lspconfig.sumneko_lua.setup { on_attach = opts.on_attach, capabilities = opts.capabilities, settings = sumneko_opts }
+    lspconfig.lua_ls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities, settings = sumneko_opts }
     lspconfig.tsserver.setup { on_attach = opts.on_attach, capabilities = opts.capabilities }
     lspconfig.rust_analyzer.setup { on_attach = opts.on_attach, capabilities = opts.capabilities, settings = rust_analyzer_opts}
     lspconfig.jdtls.setup {opts.on_attach, capabilities = opts.capabilities}
