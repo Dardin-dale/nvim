@@ -5,4 +5,8 @@ if not status_ok then
 end
 
 
-zen.setup()
+zen.setup({
+    twilight = {
+        enabled = false,
+    }
+})
