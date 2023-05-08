@@ -54,7 +54,6 @@ return packer.startup(function(use)
         end,
         ft = { "markdown" },
     })
-    use("kyazdani42/nvim-web-devicons") -- optional, for file icons
     use({
         "NTBBloodbath/galaxyline.nvim",
         -- your statusline
@@ -62,12 +61,15 @@ return packer.startup(function(use)
             require("galaxyline.themes.eviline")
         end,
     })
-    use({
-        "kyazdani42/nvim-tree.lua",
-        tag = "nightly", -- optional, updated every week. (see issue #1193)
-    })
+    use {
+        'nvim-tree/nvim-tree.lua',
+        requires = {
+            'nvim-tree/nvim-web-devicons', -- optional, for file icons
+        },
+        tag = 'nightly' -- optional, updated every week. (see issue #1193)
+    }
     use("numToStr/Comment.nvim") -- Easily comment stuff
-    use("folke/twilight.nvim") -- focus in zen mode
+    --[[ use("folke/twilight.nvim") -- focus in zen mode ]]
     --use("Pocco81/true-zen.nvim") --zen mode
     use("folke/zen-mode.nvim")
     -- using packer.nvim
@@ -100,9 +102,13 @@ return packer.startup(function(use)
     use("heavenshell/vim-jsdoc")
 
     -- LSP
-    use("williamboman/nvim-lsp-installer")
-    use("neovim/nvim-lspconfig")
+    use {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "neovim/nvim-lspconfig",
+    }
     use("jose-elias-alvarez/null-ls.nvim")
+    use 'mfussenegger/nvim-jdtls'
 
     --Debug
     use 'mfussenegger/nvim-dap'

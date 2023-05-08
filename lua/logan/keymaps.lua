@@ -25,7 +25,9 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- keymap("n", "<leader>e", ":Lex 30<cr>", opts)
-
+-- COPY/Paste from clipboard
+keymap("v", "<leader>y", '"*y', opts)
+keymap("n", "<leader>p", '"*p', opts)
 --Telescope
 keymap("n", "<leader>ff", ":lua require('telescope.builtin').find_files()<cr>", opts)
 keymap("n", "<C-p>", ":lua require('telescope.builtin').find_files()<cr>", opts)
@@ -82,11 +84,17 @@ keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 -- Formatting/null_ls
 keymap("n", "<leader>f", ":Format<cr>", opts)
 
+-- Coments
+-- gcc - single line comment
+-- gbc - block comment
+-- [count]command - comment count lines
+
 -- Insert --
 keymap("i", "<C-c>", "<esc>", opts)
 
 -- Visual --
 keymap("v", "p", '"_dp', opts)
+
 -- move text
 keymap("v", "J", ":m .+1<CR>==", opts)
 keymap("v", "K", ":m .-2<CR>==", opts)
@@ -122,9 +130,4 @@ keymap("n", "<leader>git", ":lua _LAZYGIT_TOGGLE()<CR>", opts)
 keymap("n", "<leader>node", ":lua _NODE_TOGGLE()<cr>", opts)
 
 -- Zen Mode --
---[[ keymap("n", "<leader>zn", ":TZNarrow<CR>", opts) ]]
---[[ keymap("v", "<leader>zn", ":'<,'>TZNarrow<CR>", opts) ]]
---[[ keymap("n", "<leader>zf", ":TZFocus<CR>", opts) ]]
---[[ keymap("n", "<leader>zm", ":TZFocus<CR>", opts) ]]
---[[ keymap("n", "<leader>za", ":TZAtaraxis<CR>", opts) ]]
 keymap("n", "<leader>zn", ":ZenMode<CR>", opts)

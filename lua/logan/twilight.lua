@@ -5,6 +5,6 @@ if not status_ok then
 end
 
 
-twilight.setup {
-    context = 20
-}
+--[[ twilight.setup { ]]
+--[[     context = 20 ]]
+--[[ } ]]

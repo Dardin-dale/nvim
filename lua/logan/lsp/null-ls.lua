@@ -15,9 +15,10 @@ null_ls.setup {
     -- formatting.black.with { extra_args = { "--fast" } },
     diagnostics.chktex,
     formatting.stylua,
-    diagnostics.flake8,
+    diagnostics.flake8, --python
     formatting.rustfmt,
     formatting.gofmt,
+    diagnostics.eslint,
   },
 }
 

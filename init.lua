@@ -1,5 +1,5 @@
 require("impatient")
 require "neovide"
-require "bootstrap"
+require "logan.plugins"
 require "logan"
 
