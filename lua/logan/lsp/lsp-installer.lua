@@ -52,7 +52,8 @@ mason_lspconfig.setup {
         'tsserver',
         'eslint',
         'html',
-        'cssls'
+        'cssls',
+        'pylsp',
     },
     automatic_installation = true
 }
@@ -71,6 +72,7 @@ function ()
     lspconfig.gopls.setup {opts.on_attach, capabilities = opts.capabilities}
     lspconfig.cssls.setup {opts.on_attach, capabilities = opts.capabilities}
     lspconfig.html.setup {opts.on_attach, capabilities = opts.capabilities}
+    lspconfig.pylsp.setup {opts.on_attach, capabilities = opts.capabilities}
 end
 })
 
