@@ -1,5 +1,6 @@
 local opts = { noremap = true, silent = true }
 local term_opts = { silent = true }
+local wk = require('which-key')
 
 --shorten function name
 local keymap = vim.api.nvim_set_keymap
@@ -18,11 +19,16 @@ vim.g.localleader = " "
 -- command = c
 
 --Normal--
---Window navigation
+--Window/Pane navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
+wk.register({
+    ["<C-h>"] = {
+
+    }
+})
 
 -- keymap("n", "<leader>e", ":Lex 30<cr>", opts)
 -- COPY/Paste from clipboard

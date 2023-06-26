@@ -1,4 +1,5 @@
 require "logan.options"
+require "logan.keymapdoc"
 require "logan.keymaps"
 require "logan.plugins"
 require "logan.colorscheme"
