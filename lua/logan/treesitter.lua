@@ -1,5 +1,6 @@
 local configs = require("nvim-treesitter.configs")
-require 'nvim-treesitter.install'.compilers = { "clang" }
+require 'nvim-treesitter.install'.prefer_git = false
+require 'nvim-treesitter.install'.compilers = { "clang", "gcc" }
 
 configs.setup({
 	ensure_installed = "all",
