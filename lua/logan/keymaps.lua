@@ -82,8 +82,8 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Buffers
 keymap("n", "<leader>bd", ":Bdelete!<cr>", opts) -- delete buffer
-keymap("n", "<leader>w", ":w<cr>", opts) -- write buffer
-keymap("n", "<C-s>", ":w<cr>", opts) -- write buffer
+keymap("n", "<leader>w", ":w!<cr>", opts) -- write buffer
+keymap("n", "<C-s>", ":w!<cr>", opts) -- write buffer
 
 -- NVIMTree
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
