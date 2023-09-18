@@ -14,7 +14,6 @@ vim.opt.rtp:prepend(lazypath)
 -- Install your plugins here
 local plugins = {
     -- My plugins here
-    "lewis6991/impatient.nvim",
     -- "wbthomason/packer.nvim", -- Have packer manage itself
     "nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
     "nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
@@ -41,9 +40,7 @@ local plugins = {
     },
     "numToStr/Comment.nvim", -- Easily comment stuff
     --[[ "folke/twilight.nvim") -- focus in zen mode ]]
-    --"Pocco81/true-zen.nvim") --zen mode
     "folke/zen-mode.nvim",
-    -- using packer.nvim
     { "akinsho/bufferline.nvim", version = "*"},
     "moll/vim-bbye",
     "lukas-reineke/indent-blankline.nvim", -- vertical tablines
@@ -101,7 +98,8 @@ local plugins = {
     -- Treesitter
     {
         "nvim-treesitter/nvim-treesitter",
-        run = ":TSUpdate",
+        --run = ":TSUpdate",
+        --enabled = false,
     },
     "p00f/nvim-ts-rainbow",
     "nvim-treesitter/playground",
