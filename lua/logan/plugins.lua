@@ -101,7 +101,8 @@ local plugins = {
         --run = ":TSUpdate",
         --enabled = false,
     },
-    "p00f/nvim-ts-rainbow",
+    --[[ "p00f/nvim-ts-rainbow", ]]
+    'HiPhish/rainbow-delimiters.nvim',
     "nvim-treesitter/playground",
     "JoosepAlviste/nvim-ts-context-commentstring",
 
