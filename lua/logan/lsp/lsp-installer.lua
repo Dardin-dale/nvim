@@ -53,7 +53,7 @@ mason_lspconfig.setup {
         'eslint',
         'html',
         'cssls',
-        'pylsp',
+        --[[ 'pylsp', ]]
     },
     automatic_installation = true
 }
