@@ -43,7 +43,7 @@ local plugins = {
     "folke/zen-mode.nvim",
     { "akinsho/bufferline.nvim", version = "*"},
     "moll/vim-bbye",
-    "lukas-reineke/indent-blankline.nvim", -- vertical tablines
+    {"lukas-reineke/indent-blankline.nvim", main = "ibl", opts={}}, -- vertical tablines
     "xiyaowong/nvim-transparent", -- transparent background
 
     'goolord/alpha-nvim', -- startup nvim home page
