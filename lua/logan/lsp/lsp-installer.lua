@@ -20,7 +20,6 @@ end
 --[[ end ]]
 
 
-local lspconfig = require('lspconfig')
 local lsp_defaults = lspconfig.util.default_config
 
 lsp_defaults.capabilities = vim.tbl_deep_extend(
@@ -53,6 +52,7 @@ mason_lspconfig.setup {
         'eslint',
         'html',
         'cssls',
+        'sqlls',
         --[[ 'pylsp', ]]
     },
     automatic_installation = true
@@ -66,13 +66,14 @@ local jdtls_opts = require("logan.lsp.settings.jdtls")
 mason_lspconfig.setup_handlers({
 function ()
     lspconfig.lua_ls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities, settings = sumneko_opts }
-    lspconfig.tsserver.setup { on_attach = opts.on_attach, capabilities = opts.capabilities }
+    lspconfig.tsserver.setup { on_attach = opts.on_attach, capabilities = opts.capabilities, settings = tsserver_opts }
     lspconfig.rust_analyzer.setup { on_attach = opts.on_attach, capabilities = opts.capabilities, settings = rust_analyzer_opts}
-    lspconfig.jdtls.setup {opts.on_attach, capabilities = opts.capabilities}
-    lspconfig.gopls.setup {opts.on_attach, capabilities = opts.capabilities}
-    lspconfig.cssls.setup {opts.on_attach, capabilities = opts.capabilities}
-    lspconfig.html.setup {opts.on_attach, capabilities = opts.capabilities}
-    lspconfig.pylsp.setup {opts.on_attach, capabilities = opts.capabilities}
+    lspconfig.jdtls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities}
+    lspconfig.gopls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities}
+    lspconfig.cssls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities}
+    lspconfig.html.setup { on_attach = opts.on_attach, capabilities = opts.capabilities}
+    lspconfig.pylsp.setup { on_attach = opts.on_attach, capabilities = opts.capabilities}
+    lspconfig.sqlls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities}
 end
 })
 
