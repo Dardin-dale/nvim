@@ -1,5 +1,6 @@
 local opts = { noremap = true, silent = true }
 local term_opts = { silent = true }
+local wk = require('which-key')
 
 --shorten function name
 local keymap = vim.api.nvim_set_keymap
@@ -18,11 +19,17 @@ vim.g.localleader = " "
 -- command = c
 
 --Normal--
---Window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+--Window/Pane navigation
+--[[ keymap("n", "<C-h>", "<C-w>h", opts) ]]
+--[[ keymap("n", "<C-j>", "<C-w>j", opts) ]]
+--[[ keymap("n", "<C-k>", "<C-w>k", opts) ]]
+--[[ keymap("n", "<C-l>", "<C-w>l", opts) ]]
+wk.register({
+    ["<C-h>"] = {"<C-w>h", "Move one pane left"},
+    ["<C-j>"] = {"<C-w>j", "Move one pane down"},
+    ["<C-k>"] = {"<C-w>k", "Move one pane up"},
+    ["<C-l>"] = {"<C-w>l", "Move one pane right"},
+})
 
 -- keymap("n", "<leader>e", ":Lex 30<cr>", opts)
 -- COPY/Paste from clipboard
@@ -75,8 +82,8 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Buffers
 keymap("n", "<leader>bd", ":Bdelete!<cr>", opts) -- delete buffer
-keymap("n", "<leader>w", ":w<cr>", opts) -- write buffer
-keymap("n", "<C-s>", ":w<cr>", opts) -- write buffer
+keymap("n", "<leader>w", ":w!<cr>", opts) -- write buffer
+keymap("n", "<C-s>", ":w!<cr>", opts) -- write buffer
 
 -- NVIMTree
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)

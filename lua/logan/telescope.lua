@@ -19,7 +19,10 @@ telescope.setup {
         selection_caret = " ",
         path_display = { "smart" },
         color_devicons = true,
-
+        file_ignore_patterns = { 
+            "node%_modules/.*",
+            ".git/.*"
+        },
         mappings = {
             n = {
                 

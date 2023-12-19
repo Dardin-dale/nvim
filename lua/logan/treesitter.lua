@@ -1,5 +1,6 @@
 local configs = require("nvim-treesitter.configs")
-require 'nvim-treesitter.install'.compilers = { "clang" }
+require 'nvim-treesitter.install'.prefer_git = false
+require 'nvim-treesitter.install'.compilers = { "clang", "gcc" }
 
 configs.setup({
 	ensure_installed = "all",
@@ -26,3 +27,25 @@ configs.setup({
 		enable = true,
 	},
 })
+
+local rainbow_delimiters = require('rainbow-delimiters')
+vim.g.rainbow_delimiters = {
+    strategy = {
+            [''] = rainbow_delimiters.strategy['global'],
+            commonlisp = rainbow_delimiters.strategy['local'],
+        },
+        query = {
+            [''] = 'rainbow-delimiters',
+            lua = 'rainbow-blocks',
+        },
+        highlight = {
+            'RainbowDelimiterRed',
+            'RainbowDelimiterYellow',
+            'RainbowDelimiterBlue',
+            'RainbowDelimiterOrange',
+            'RainbowDelimiterGreen',
+            'RainbowDelimiterViolet',
+            'RainbowDelimiterCyan',
+        },
+        blacklist = {'c', 'cpp'},
+}
