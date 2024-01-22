@@ -20,10 +20,10 @@ vim.g.localleader = " "
 
 --Normal--
 --Window/Pane navigation
---[[ keymap("n", "<C-h>", "<C-w>h", opts) ]]
---[[ keymap("n", "<C-j>", "<C-w>j", opts) ]]
---[[ keymap("n", "<C-k>", "<C-w>k", opts) ]]
---[[ keymap("n", "<C-l>", "<C-w>l", opts) ]]
+keymap("n", "<C-h>", "<C-w>h", opts)
+keymap("n", "<C-j>", "<C-w>j", opts)
+keymap("n", "<C-k>", "<C-w>k", opts)
+keymap("n", "<C-l>", "<C-w>l", opts)
 wk.register({
     ["<C-h>"] = {"<C-w>h", "Move one pane left"},
     ["<C-j>"] = {"<C-w>j", "Move one pane down"},

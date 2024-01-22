@@ -68,11 +68,11 @@ function ()
     lspconfig.lua_ls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities, settings = sumneko_opts }
     lspconfig.tsserver.setup { on_attach = opts.on_attach, capabilities = opts.capabilities, settings = tsserver_opts }
     lspconfig.rust_analyzer.setup { on_attach = opts.on_attach, capabilities = opts.capabilities, settings = rust_analyzer_opts}
-    lspconfig.jdtls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities}
-    lspconfig.gopls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities}
+    lspconfig.jdtls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities, settings = jdtls_opts}
+    --[[ lspconfig.gopls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities} ]]
     lspconfig.cssls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities}
     lspconfig.html.setup { on_attach = opts.on_attach, capabilities = opts.capabilities}
-    lspconfig.pylsp.setup { on_attach = opts.on_attach, capabilities = opts.capabilities}
+    --[[ lspconfig.pylsp.setup { on_attach = opts.on_attach, capabilities = opts.capabilities} ]]
     lspconfig.sqlls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities}
 end
 })

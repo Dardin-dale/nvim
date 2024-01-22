@@ -1,7 +1,7 @@
 require "logan.options"
+require "logan.plugins"
 require "logan.keymapdoc"
 require "logan.keymaps"
-require "logan.plugins"
 require "logan.colorscheme"
 require "logan.gui"
 require "logan.autocmd"
