@@ -14,12 +14,6 @@ if not status_ok then
 end
 
 
---[[ local status_ok, jdtls = pcall(require, "jdtls") ]]
---[[ if not status_ok then ]]
---[[     return ]]
---[[ end ]]
-
-
 local lsp_defaults = lspconfig.util.default_config
 
 lsp_defaults.capabilities = vim.tbl_deep_extend(
@@ -61,14 +55,14 @@ mason_lspconfig.setup {
 local sumneko_opts = require("logan.lsp.settings.sumneko_lua")
 local tsserver_opts = require("logan.lsp.settings.jsonls")
 local rust_analyzer_opts = require("logan.lsp.settings.rust_analyzer")
-local jdtls_opts = require("logan.lsp.settings.jdtls")
+require("logan.lsp.settings.jdtls") -- separate setup for jdtls
 
 mason_lspconfig.setup_handlers({
 function ()
     lspconfig.lua_ls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities, settings = sumneko_opts }
     lspconfig.tsserver.setup { on_attach = opts.on_attach, capabilities = opts.capabilities, settings = tsserver_opts }
     lspconfig.rust_analyzer.setup { on_attach = opts.on_attach, capabilities = opts.capabilities, settings = rust_analyzer_opts}
-    lspconfig.jdtls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities, settings = jdtls_opts}
+    --[[ lspconfig.jdtls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities, settings = jdtls_opts} ]]
     --[[ lspconfig.gopls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities} ]]
     lspconfig.cssls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities}
     lspconfig.html.setup { on_attach = opts.on_attach, capabilities = opts.capabilities}
