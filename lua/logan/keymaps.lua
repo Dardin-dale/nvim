@@ -33,8 +33,11 @@ wk.register({
 
 -- keymap("n", "<leader>e", ":Lex 30<cr>", opts)
 -- COPY/Paste from clipboard
-keymap("v", "<leader>y", '"*y', opts)
-keymap("n", "<leader>p", '"*p', opts)
+keymap("v", "<leader>y", '"+y', opts)
+keymap("n", "<leader>p", '"+p', opts)
+keymap("n", "<leader>yy", '"+yy', opts)
+keymap("n", "<leader>y$", '"+y$', opts)
+
 --Telescope
 keymap("n", "<leader>ff", ":lua require('telescope.builtin').find_files()<cr>", opts)
 keymap("n", "<C-p>", ":lua require('telescope.builtin').find_files()<cr>", opts)
@@ -91,6 +94,17 @@ keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 -- Formatting/null_ls
 keymap("n", "<leader>f", ":Format<cr>", opts)
 
+-- Quickfix navigation
+keymap("n", "<leader>qn", ":cnext<CR>", opts)
+keymap("n", "<leader>qp", ":cprev<CR>", opts)
+keymap("n", "<leader>qo", ":copen<CR>", opts)
+keymap("n", "<leader>qc", ":cclose<CR>", opts)
+
+-- Location list navigation
+keymap("n", "<leader>ln", ":lnext<CR>", opts)
+keymap("n", "<leader>lp", ":lprev<CR>", opts)
+keymap("n", "<leader>lo", ":lopen<CR>", opts)
+keymap("n", "<leader>lc", ":lclose<CR>", opts)
 -- Coments
 -- gcc - single line comment
 -- gbc - block comment
@@ -138,3 +152,4 @@ keymap("n", "<leader>node", ":lua _NODE_TOGGLE()<cr>", opts)
 
 -- Zen Mode --
 keymap("n", "<leader>zn", ":ZenMode<CR>", opts)
+

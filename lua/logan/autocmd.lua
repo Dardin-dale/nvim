@@ -9,3 +9,15 @@
     --end)
   --end
 --})
+local function AutoDetectFileType()
+    local line = vim.fn.getline(1)
+    if line:match("^//") then
+        vim.bo.filetype = 'java'
+    elseif line:match("^%s*{") then
+        vim.bo.filetype = 'json'
+    else
+        vim.bo.filetype = 'java'
+    end
+end
+
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {pattern = "*", callback = AutoDetectFileType})
