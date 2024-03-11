@@ -47,6 +47,7 @@ mason_lspconfig.setup {
         'html',
         'cssls',
         'sqlls',
+        'bashls',
         --[[ 'pylsp', ]]
     },
     automatic_installation = true
@@ -68,6 +69,8 @@ function ()
     lspconfig.html.setup { on_attach = opts.on_attach, capabilities = opts.capabilities}
     --[[ lspconfig.pylsp.setup { on_attach = opts.on_attach, capabilities = opts.capabilities} ]]
     lspconfig.sqlls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities}
+    lspconfig.bashls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities}
+    lspconfig.dartls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities}
 end
 })
 
