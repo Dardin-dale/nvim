@@ -109,6 +109,7 @@ keymap("n", "<leader>lc", ":lclose<CR>", opts)
 -- gcc - single line comment
 -- gbc - block comment
 -- [count]command - comment count lines
+keymap("n", "<C-c>", ":noh<CR>", opts)
 
 -- Insert --
 keymap("i", "<C-c>", "<esc>", opts)
