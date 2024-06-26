@@ -21,7 +21,7 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
   lsp_defaults.capabilities,
   require('cmp_nvim_lsp').default_capabilities()
 )
-
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {pattern = "*.sh", command = "set filetype=sh"})
 
 local opts = {
     on_attach = require("logan.lsp.handlers").on_attach,
@@ -48,6 +48,7 @@ mason_lspconfig.setup {
         'cssls',
         'sqlls',
         'bashls',
+        'clangd',
         --[[ 'pylsp', ]]
     },
     automatic_installation = true
@@ -57,21 +58,24 @@ local sumneko_opts = require("logan.lsp.settings.sumneko_lua")
 local tsserver_opts = require("logan.lsp.settings.jsonls")
 local rust_analyzer_opts = require("logan.lsp.settings.rust_analyzer")
 require("logan.lsp.settings.jdtls") -- separate setup for jdtls
+local noop = function() end
 
 mason_lspconfig.setup_handlers({
 function ()
     lspconfig.lua_ls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities, settings = sumneko_opts }
     lspconfig.tsserver.setup { on_attach = opts.on_attach, capabilities = opts.capabilities, settings = tsserver_opts }
     lspconfig.rust_analyzer.setup { on_attach = opts.on_attach, capabilities = opts.capabilities, settings = rust_analyzer_opts}
+    lspconfig.clangd.setup {on_attach = opts.on_attach, capabilities = opts.capabilities}
     --[[ lspconfig.jdtls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities, settings = jdtls_opts} ]]
     --[[ lspconfig.gopls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities} ]]
     lspconfig.cssls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities}
     lspconfig.html.setup { on_attach = opts.on_attach, capabilities = opts.capabilities}
     --[[ lspconfig.pylsp.setup { on_attach = opts.on_attach, capabilities = opts.capabilities} ]]
     lspconfig.sqlls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities}
-    lspconfig.bashls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities}
+    lspconfig.bashls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities, filetypes = { "sh" }}
     lspconfig.dartls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities}
-end
+end,
+['jdtls'] = noop,
 })
 
 
