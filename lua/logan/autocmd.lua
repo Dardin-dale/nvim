@@ -15,8 +15,6 @@ local function AutoDetectFileType()
         vim.bo.filetype = 'java'
     elseif line:match("^%s*{") then
         vim.bo.filetype = 'json'
-    else
-        vim.bo.filetype = 'java'
     end
 end
 
