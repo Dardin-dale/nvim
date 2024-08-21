@@ -25,10 +25,10 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 wk.register({
-    ["<C-h>"] = {"<C-w>h", "Move one pane left"},
-    ["<C-j>"] = {"<C-w>j", "Move one pane down"},
-    ["<C-k>"] = {"<C-w>k", "Move one pane up"},
-    ["<C-l>"] = {"<C-w>l", "Move one pane right"},
+    ["<C-h>"] = {"<C-w>h", desc = "Move one pane left"},
+    ["<C-j>"] = {"<C-w>j", desc = "Move one pane down"},
+    ["<C-k>"] = {"<C-w>k", desc = "Move one pane up"},
+    ["<C-l>"] = {"<C-w>l", desc = "Move one pane right"},
 })
 
 -- keymap("n", "<leader>e", ":Lex 30<cr>", opts)
@@ -142,7 +142,7 @@ keymap('n', "<F4>", ":lua require('dap').continue()<CR>", opts)
 keymap('n', "<F2>", ":lua require('dap').step_over()<CR>", opts)
 keymap('n', "<F1>", ":lua require('dap').step_into()<CR>", opts)
 keymap('n', "<F3>", ":lua require('dap').step_out()<CR>", opts)
-keymap('n', "<leader>b", ":lua require('dap').toggle_breakpoint()<CR>", opts)
+keymap('n', "<leader>bp", ":lua require('dap').toggle_breakpoint()<CR>", opts)
 keymap('n', "<leader>B", ":lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opts)
 keymap('n', "<leader>lp", ":lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", opts)
 keymap('n', "<leader>dr", ":lua require('dap').repl.open()<CR>", opts)

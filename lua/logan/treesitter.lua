@@ -23,9 +23,9 @@ configs.setup({
 	autotag = {
 		enable = true,
 	},
-	context_commentstring = {
-		enable = true,
-	},
+	--[[ context_commentstring = { ]]
+	--[[ 	enable = true, ]]
+	--[[ }, ]]
 })
 
 local rainbow_delimiters = require('rainbow-delimiters')
