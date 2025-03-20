@@ -1,7 +1,9 @@
 -- If you started neovim within `~/dev/xy/project-1` this would resolve to `project-1`
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 
-local workspace_dir = '~/.local/share/nvim/jdtls-workspace/' .. project_name
+local home = os.getenv('HOME')
+local workspace_dir = home .. '/.local/share/nvim/jdtls-workspace/' .. project_name
+
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {
   -- The command that starts the language server
