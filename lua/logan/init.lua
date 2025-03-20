@@ -12,6 +12,7 @@ require "logan.treesitter"
 require "logan.alpha" --Dashboard on open
 require "logan.autopairs"
 require "logan.comment"
+require "logan.formatting"
 require "logan.gitsigns"
 require "logan.nvim-tree"
 require "logan.bufferline"

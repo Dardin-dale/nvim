@@ -39,6 +39,11 @@ local plugins = {
         tag = 'nightly' -- optional, updated every week. (see issue #1193)
     },
     "numToStr/Comment.nvim", -- Easily comment stuff
+    { -- Formatting
+      "stevearc/conform.nvim",
+      event = { "BufWritePre" },
+      cmd = { "ConformInfo" },
+    },
     --[[ "folke/twilight.nvim") -- focus in zen mode ]]
     "folke/zen-mode.nvim",
     { "akinsho/bufferline.nvim", version = "*"},
