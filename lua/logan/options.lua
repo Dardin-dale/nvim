@@ -20,12 +20,12 @@ vim.opt.colorcolumn = "80"
 vim.opt.termguicolors = true
 vim.opt.cmdheight = 2
 vim.opt.relativenumber = true
-vim.opt.updatetime=50
-vim.opt.shortmess:append "c"
+vim.opt.updatetime = 50
+vim.opt.shortmess:append("c")
 vim.opt.mouse = "a"
 --vim.cmd "set shortmess+=:c"
 vim.opt.laststatus = 3
 vim.opt.wrap = false
 vim.opt.autoread = true -- still need to manually trigger with e using terminal
 vim.opt.spell = true
-vim.opt.clipboard="unnamedplus"
+vim.opt.clipboard = "unnamedplus"
