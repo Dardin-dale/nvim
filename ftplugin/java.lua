@@ -3,6 +3,11 @@ local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 
 local home = os.getenv("HOME")
 local workspace_dir = home .. "/.local/share/nvim/jdtls-workspace/" .. project_name
+-- Set tab settings specifically for Dart files
+vim.opt_local.tabstop = 2
+vim.opt_local.softtabstop = 2
+vim.opt_local.shiftwidth = 2
+vim.opt_local.expandtab = true
 
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {
