@@ -55,7 +55,7 @@ mason_lspconfig.setup({
 	automatic_installation = true,
 })
 
-local sumneko_opts = require("logan.lsp.settings.sumneko_lua")
+local lua_ls_opts = require("logan.lsp.settings.lua_ls")
 local ts_ls_opts = require("logan.lsp.settings.jsonls")
 local rust_analyzer_opts = require("logan.lsp.settings.rust_analyzer")
 local noop = function() end
@@ -63,7 +63,7 @@ local noop = function() end
 mason_lspconfig.setup_handlers({
 	function()
 		-- Development languages
-		lspconfig.lua_ls.setup({ on_attach = opts.on_attach, capabilities = opts.capabilities, settings = sumneko_opts })
+		lspconfig.lua_ls.setup({ on_attach = opts.on_attach, capabilities = opts.capabilities, settings = lua_ls_opts })
 		lspconfig.ts_ls.setup({ on_attach = opts.on_attach, capabilities = opts.capabilities, settings = ts_ls_opts })
 		lspconfig.rust_analyzer.setup({
 			on_attach = opts.on_attach,

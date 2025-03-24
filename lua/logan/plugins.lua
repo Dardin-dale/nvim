@@ -77,7 +77,6 @@ local plugins = {
 		"williamboman/mason-lspconfig.nvim",
 		"neovim/nvim-lspconfig",
 	},
-	"jose-elias-alvarez/null-ls.nvim",
 	"mfussenegger/nvim-jdtls",
 
 	-- Debug

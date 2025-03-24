@@ -5,4 +5,3 @@ end
 
 require("logan.lsp.lsp-installer")
 require("logan.lsp.handlers").setup()
-require("logan.lsp.null-ls")

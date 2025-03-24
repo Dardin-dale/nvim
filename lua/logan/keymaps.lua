@@ -68,8 +68,6 @@ keymap("n", "<F2>", ":lua require('dap').step_over()<CR>", opts)
 keymap("n", "<F1>", ":lua require('dap').step_into()<CR>", opts)
 keymap("n", "<F3>", ":lua require('dap').step_out()<CR>", opts)
 
--- ACTUAL KEY BINDINGS (these were missing in the previous version!)
-
 -- Clipboard operations
 keymap("n", "<leader>p", '"+p', opts)
 keymap("n", "<leader>yy", '"+yy', opts)
