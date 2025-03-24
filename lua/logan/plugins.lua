@@ -1,127 +1,131 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
 end
 vim.opt.rtp:prepend(lazypath)
 
 -- Install your plugins here
 local plugins = {
-    -- My plugins here
-    -- "wbthomason/packer.nvim", -- Have packer manage itself
-    "nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
-    "nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
-    "windwp/nvim-autopairs", -- Autopairs, integrates with both cmp and treesitter
-    {
-        "iamcco/markdown-preview.nvim",
-        run = "cd app && npm install",
-        setup = function()
-            vim.g.mkdp_filetypes = { "markdown" }
-        end,
-        ft = { "markdown" },
-    },
-    {
-        "NTBBloodbath/galaxyline.nvim",
-        -- your statusline
-        config = function()
-            require("galaxyline.themes.eviline")
-        end,
-    },
-    "nvim-tree/nvim-web-devicons",
-    {
-        'nvim-tree/nvim-tree.lua',
-        tag = 'nightly' -- optional, updated every week. (see issue #1193)
-    },
-    "numToStr/Comment.nvim", -- Easily comment stuff
-    { -- Formatting
-      "stevearc/conform.nvim",
-      event = { "BufWritePre" },
-      cmd = { "ConformInfo" },
-    },
-    --[[ "folke/twilight.nvim") -- focus in zen mode ]]
-    "folke/zen-mode.nvim",
-    { "akinsho/bufferline.nvim", version = "*"},
-    "moll/vim-bbye",
-    {"lukas-reineke/indent-blankline.nvim", main = "ibl", opts={}}, -- vertical tablines
-    "xiyaowong/nvim-transparent", -- transparent background
+	-- Core plugins
+	"nvim-lua/popup.nvim",
+	"nvim-lua/plenary.nvim",
+	"windwp/nvim-autopairs",
 
-    'goolord/alpha-nvim', -- startup nvim home page
+	-- Markdown preview
+	{
+		"iamcco/markdown-preview.nvim",
+		run = "cd app && npm install",
+		setup = function()
+			vim.g.mkdp_filetypes = { "markdown" }
+		end,
+		ft = { "markdown" },
+	},
 
-    'Shatur/neovim-session-manager', --Sessions
-    --[[ 'Pocco81/auto-save.nvim') ]] -- annoying af
-    'folke/which-key.nvim',
+	-- UI improvements
+	{
+		"NTBBloodbath/galaxyline.nvim",
+		config = function()
+			require("galaxyline.themes.eviline")
+		end,
+	},
+	"nvim-tree/nvim-web-devicons",
+	{
+		"nvim-tree/nvim-tree.lua",
+		tag = "nightly",
+	},
+	"numToStr/Comment.nvim",
+	{
+		"stevearc/conform.nvim",
+		event = { "BufWritePre" },
+		cmd = { "ConformInfo" },
+	},
+	"folke/zen-mode.nvim",
+	{ "akinsho/bufferline.nvim", version = "*" },
+	"moll/vim-bbye",
+	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+	"xiyaowong/nvim-transparent",
+	"goolord/alpha-nvim",
+	"Shatur/neovim-session-manager",
+	"folke/which-key.nvim",
 
-    -- Terminal
-    { "akinsho/toggleterm.nvim", version = "*"},
+	-- Terminal
+	{ "akinsho/toggleterm.nvim", version = "*" },
 
-    -- cmp plugins
-    { "hrsh7th/nvim-cmp" }, -- The completion plugin
-    { "hrsh7th/cmp-buffer" }, -- buffer completions
-    { "hrsh7th/cmp-path" }, -- path completions
-    { "hrsh7th/cmp-cmdline" }, -- cmdline completions
-    { "saadparwaiz1/cmp_luasnip" }, -- snippet completions
-    { "hrsh7th/cmp-nvim-lsp" }, -- lsp autocompletions
-    { "hrsh7th/cmp-nvim-lua" },
-    { 'saecki/crates.nvim' },
+	-- Completion and snippets
+	"hrsh7th/nvim-cmp",
+	"hrsh7th/cmp-buffer",
+	"hrsh7th/cmp-path",
+	"hrsh7th/cmp-cmdline",
+	"saadparwaiz1/cmp_luasnip",
+	"hrsh7th/cmp-nvim-lsp",
+	"hrsh7th/cmp-nvim-lua",
+	"saecki/crates.nvim",
+	"L3MON4D3/LuaSnip",
+	"rafamadriz/friendly-snippets",
+	"heavenshell/vim-jsdoc",
 
-    -- snippets
-    { "L3MON4D3/LuaSnip" }, --snippet engine
-    { "rafamadriz/friendly-snippets" }, -- a bunch of snippets to use
-    "heavenshell/vim-jsdoc",
+	-- LSP
+	{
+		"williamboman/mason.nvim",
+		"williamboman/mason-lspconfig.nvim",
+		"neovim/nvim-lspconfig",
+	},
+	"jose-elias-alvarez/null-ls.nvim",
+	"mfussenegger/nvim-jdtls",
 
-    -- LSP
-    {
-        "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
-        "neovim/nvim-lspconfig",
-    },
-    "jose-elias-alvarez/null-ls.nvim",
-    'mfussenegger/nvim-jdtls',
+	-- Debug
+	"mfussenegger/nvim-dap",
+	{ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" } },
+	"nvim-telescope/telescope-dap.nvim",
+	"theHamsta/nvim-dap-virtual-text",
 
-    --Debug
-    'mfussenegger/nvim-dap',
-    { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" } },
-    'nvim-telescope/telescope-dap.nvim',
-    'theHamsta/nvim-dap-virtual-text',
+	-- Telescope
+	"nvim-telescope/telescope.nvim",
+	"nvim-telescope/telescope-media-files.nvim",
+	{ "kkharji/sqlite.lua" },
+	"nvim-telescope/telescope-frecency.nvim",
+	{ "nvim-telescope/telescope-ui-select.nvim" },
+	"ThePrimeagen/harpoon",
 
+	-- Treesitter
+	{
+		"nvim-treesitter/nvim-treesitter",
+	},
+	"HiPhish/rainbow-delimiters.nvim",
+	"nvim-treesitter/playground",
+	"JoosepAlviste/nvim-ts-context-commentstring",
 
-    --Telescope
-    "nvim-telescope/telescope.nvim",
-    "nvim-telescope/telescope-media-files.nvim",
-    { "kkharji/sqlite.lua" }, -- required for frecency
-    "nvim-telescope/telescope-frecency.nvim",
-    { 'nvim-telescope/telescope-ui-select.nvim' },
+	-- Git
+	"lewis6991/gitsigns.nvim",
+	"akinsho/git-conflict.nvim",
 
-    "ThePrimeagen/harpoon",
+	-- Color Schemes
+	"lunarvim/colorschemes",
+	"folke/tokyonight.nvim",
+	{ "ellisonleao/gruvbox.nvim" },
+	{ "catppuccin/nvim", as = "catppuccin" },
 
-    -- Treesitter
-    {
-        "nvim-treesitter/nvim-treesitter",
-        --run = ":TSUpdate",
-        --enabled = false,
-    },
-    --[[ "p00f/nvim-ts-rainbow", ]]
-    'HiPhish/rainbow-delimiters.nvim',
-    "nvim-treesitter/playground",
-    "JoosepAlviste/nvim-ts-context-commentstring",
-
-    -- Git
-    {
-        "lewis6991/gitsigns.nvim",
-        --tag = 'release' -- To the latest release
-    },
-    { "akinsho/git-conflict.nvim" },
-    -- ColorSchemes --
-    "lunarvim/colorschemes",
-    "folke/tokyonight.nvim",
-    { "ellisonleao/gruvbox.nvim" },
-    { "catppuccin/nvim", as = "catppuccin" },
+	-- New plugins for config format support
+	{ "b0o/schemastore.nvim" }, -- JSON schemas for YAML/JSON
+	{
+		"tamasfe/taplo",
+		ft = { "toml" },
+		cmd = { "Taplo" },
+		build = function()
+			-- Only install if the taplo binary doesn't exist yet
+			if vim.fn.executable("taplo") == 0 then
+				vim.notify("Installing taplo via cargo...", vim.log.levels.INFO)
+				vim.fn.system({ "cargo", "install", "--features", "lsp", "--locked", "taplo-cli" })
+			end
+		end,
+	},
 }
 
 local opts = {}

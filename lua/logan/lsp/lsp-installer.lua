@@ -17,7 +17,6 @@ local lsp_defaults = lspconfig.util.default_config
 
 lsp_defaults.capabilities =
 	vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.sh", command = "set filetype=sh" })
 
 local opts = {
 	on_attach = require("logan.lsp.handlers").on_attach,
@@ -36,16 +35,22 @@ mason.setup({
 
 mason_lspconfig.setup({
 	ensure_installed = {
+		-- Development languages
 		"lua_ls",
 		"rust_analyzer",
 		"ts_ls",
 		"eslint",
 		"html",
 		"cssls",
+		"jsonls",
 		"sqlls",
 		"bashls",
 		"clangd",
-		--[[ 'pylsp', ]]
+
+		-- Configuration languages
+		"yamlls",
+		"taplo", -- TOML
+		"lemminx", -- XML
 	},
 	automatic_installation = true,
 })
@@ -57,6 +62,7 @@ local noop = function() end
 
 mason_lspconfig.setup_handlers({
 	function()
+		-- Development languages
 		lspconfig.lua_ls.setup({ on_attach = opts.on_attach, capabilities = opts.capabilities, settings = sumneko_opts })
 		lspconfig.ts_ls.setup({ on_attach = opts.on_attach, capabilities = opts.capabilities, settings = ts_ls_opts })
 		lspconfig.rust_analyzer.setup({
@@ -65,13 +71,58 @@ mason_lspconfig.setup_handlers({
 			settings = rust_analyzer_opts,
 		})
 		lspconfig.clangd.setup({ on_attach = opts.on_attach, capabilities = opts.capabilities })
-		--[[ lspconfig.gopls.setup { on_attach = opts.on_attach, capabilities = opts.capabilities} ]]
 		lspconfig.cssls.setup({ on_attach = opts.on_attach, capabilities = opts.capabilities })
 		lspconfig.html.setup({ on_attach = opts.on_attach, capabilities = opts.capabilities })
-		--[[ lspconfig.pylsp.setup { on_attach = opts.on_attach, capabilities = opts.capabilities} ]]
 		lspconfig.sqlls.setup({ on_attach = opts.on_attach, capabilities = opts.capabilities })
 		lspconfig.bashls.setup({ on_attach = opts.on_attach, capabilities = opts.capabilities, filetypes = { "sh" } })
 		lspconfig.dartls.setup({ on_attach = opts.on_attach, capabilities = opts.capabilities })
+
+		-- Configuration languages
+		lspconfig.yamlls.setup({
+			on_attach = opts.on_attach,
+			capabilities = opts.capabilities,
+			settings = {
+				yaml = {
+					schemas = {
+						["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+						["https://json.schemastore.org/github-action.json"] = "/.github/actions/*",
+						["https://json.schemastore.org/docker-compose.json"] = "/docker-compose.yml",
+						["https://json.schemastore.org/kustomization.json"] = "/kustomization.yaml",
+						["https://json.schemastore.org/chart.json"] = "/Chart.yaml",
+					},
+					validate = true,
+					format = { enabled = true },
+				},
+			},
+		})
+
+		lspconfig.taplo.setup({
+			on_attach = opts.on_attach,
+			capabilities = opts.capabilities,
+			settings = {
+				evenBetterToml = {
+					schema = {
+						enabled = true,
+						associations = {
+							["Cargo.toml"] = "https://json.schemastore.org/cargo.json",
+							["pyproject.toml"] = "https://json.schemastore.org/pyproject.json",
+							["**/action.toml"] = "https://json.schemastore.org/github-action.json",
+							["**/workflow*.toml"] = "https://json.schemastore.org/github-workflow.json",
+						},
+					},
+					formatter = {
+						indentTables = true,
+						reorderKeys = false,
+						indentString = "  ", -- 2 spaces
+						alignEntries = false,
+						arrayTrailingComma = false,
+						arrayAutoExpand = true,
+						compact = false,
+					},
+				},
+			},
+		})
+		lspconfig.lemminx.setup({ on_attach = opts.on_attach, capabilities = opts.capabilities })
 	end,
 	["jdtls"] = noop,
 })
