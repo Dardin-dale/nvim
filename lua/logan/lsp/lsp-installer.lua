@@ -46,7 +46,7 @@ mason_lspconfig.setup({
 		"sqlls",
 		"bashls",
 		"clangd",
-
+		"groovyls",
 		-- Configuration languages
 		"yamlls",
 		"taplo", -- TOML
@@ -61,23 +61,48 @@ local rust_analyzer_opts = require("logan.lsp.settings.rust_analyzer")
 local noop = function() end
 
 mason_lspconfig.setup_handlers({
-	function()
-		-- Development languages
-		lspconfig.lua_ls.setup({ on_attach = opts.on_attach, capabilities = opts.capabilities, settings = lua_ls_opts })
-		lspconfig.ts_ls.setup({ on_attach = opts.on_attach, capabilities = opts.capabilities, settings = ts_ls_opts })
+	-- Default handler for all servers
+	function(server_name)
+		lspconfig[server_name].setup({
+			on_attach = opts.on_attach,
+			capabilities = opts.capabilities,
+		})
+	end,
+
+	-- Custom handlers for specific servers
+	["lua_ls"] = function()
+		lspconfig.lua_ls.setup({
+			on_attach = opts.on_attach,
+			capabilities = opts.capabilities,
+			settings = lua_ls_opts,
+		})
+	end,
+
+	["ts_ls"] = function()
+		lspconfig.ts_ls.setup({
+			on_attach = opts.on_attach,
+			capabilities = opts.capabilities,
+			settings = ts_ls_opts,
+		})
+	end,
+
+	["rust_analyzer"] = function()
 		lspconfig.rust_analyzer.setup({
 			on_attach = opts.on_attach,
 			capabilities = opts.capabilities,
 			settings = rust_analyzer_opts,
 		})
-		lspconfig.clangd.setup({ on_attach = opts.on_attach, capabilities = opts.capabilities })
-		lspconfig.cssls.setup({ on_attach = opts.on_attach, capabilities = opts.capabilities })
-		lspconfig.html.setup({ on_attach = opts.on_attach, capabilities = opts.capabilities })
-		lspconfig.sqlls.setup({ on_attach = opts.on_attach, capabilities = opts.capabilities })
-		lspconfig.bashls.setup({ on_attach = opts.on_attach, capabilities = opts.capabilities, filetypes = { "sh" } })
-		lspconfig.dartls.setup({ on_attach = opts.on_attach, capabilities = opts.capabilities })
+	end,
 
-		-- Configuration languages
+	["bashls"] = function()
+		lspconfig.bashls.setup({
+			on_attach = opts.on_attach,
+			capabilities = opts.capabilities,
+			filetypes = { "sh" },
+		})
+	end,
+
+	["yamlls"] = function()
 		lspconfig.yamlls.setup({
 			on_attach = opts.on_attach,
 			capabilities = opts.capabilities,
@@ -95,7 +120,9 @@ mason_lspconfig.setup_handlers({
 				},
 			},
 		})
+	end,
 
+	["taplo"] = function()
 		lspconfig.taplo.setup({
 			on_attach = opts.on_attach,
 			capabilities = opts.capabilities,
@@ -122,7 +149,15 @@ mason_lspconfig.setup_handlers({
 				},
 			},
 		})
-		lspconfig.lemminx.setup({ on_attach = opts.on_attach, capabilities = opts.capabilities })
 	end,
+
+	["groovyls"] = function()
+		lspconfig.groovyls.setup({
+			on_attach = opts.on_attach,
+			capabilities = opts.capabilities,
+			-- You can add specific settings for Groovy here if needed
+		})
+	end,
+
 	["jdtls"] = noop,
 })
