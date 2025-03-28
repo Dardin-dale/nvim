@@ -102,13 +102,6 @@ mason_lspconfig.setup_handlers({
 		})
 	end,
 
-	["dartls"] = function()
-		lspconfig.dartls.setup({
-			on_attach = opts.on_attach,
-			capabilities = opts.capabilities,
-		})
-	end,
-
 	["yamlls"] = function()
 		lspconfig.yamlls.setup({
 			on_attach = opts.on_attach,
@@ -170,7 +163,7 @@ mason_lspconfig.setup_handlers({
 })
 
 lspconfig.dartls.setup({
-    cmd = {"dart", "language-server", "--protocol=lsp"},
-    on_attach = opts.on_attach,
-    capabilities = opts.capabilities
+	cmd = { "dart", "language-server", "--protocol=lsp" },
+	on_attach = opts.on_attach,
+	capabilities = opts.capabilities,
 })
