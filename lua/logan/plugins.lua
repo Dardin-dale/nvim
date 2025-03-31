@@ -29,13 +29,11 @@ local plugins = {
 	},
 
 	-- UI improvements
-	{
-		"NTBBloodbath/galaxyline.nvim",
-		config = function()
-			require("galaxyline.themes.eviline")
-		end,
-	},
 	"nvim-tree/nvim-web-devicons",
+    {
+        'nvim-lualine/lualine.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' }
+    },
 	{
 		"nvim-tree/nvim-tree.lua",
 		tag = "nightly",

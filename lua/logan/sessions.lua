@@ -11,7 +11,7 @@ sessions.setup {
             -- Force LSP restart after session load
             vim.defer_fn(function()
                 vim.cmd("LspRestart")
-            end, 1000)
+            end, 3000)
         end
     }
 }
