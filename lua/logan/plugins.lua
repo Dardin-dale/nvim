@@ -30,10 +30,10 @@ local plugins = {
 
 	-- UI improvements
 	"nvim-tree/nvim-web-devicons",
-    {
-        'nvim-lualine/lualine.nvim',
-        dependencies = { 'nvim-tree/nvim-web-devicons' }
-    },
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+	},
 	{
 		"nvim-tree/nvim-tree.lua",
 		tag = "nightly",
@@ -57,17 +57,22 @@ local plugins = {
 	{ "akinsho/toggleterm.nvim", version = "*" },
 
 	-- Completion and snippets
-	"hrsh7th/nvim-cmp",
-	"hrsh7th/cmp-buffer",
-	"hrsh7th/cmp-path",
-	"hrsh7th/cmp-cmdline",
-	"saadparwaiz1/cmp_luasnip",
-	"hrsh7th/cmp-nvim-lsp",
-	"hrsh7th/cmp-nvim-lua",
-	"saecki/crates.nvim",
-	"L3MON4D3/LuaSnip",
-	"rafamadriz/friendly-snippets",
-	"heavenshell/vim-jsdoc",
+    {
+	  "hrsh7th/nvim-cmp",
+      version = "*",
+      dependencies = {
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-path",
+        "hrsh7th/cmp-cmdline",
+        "saadparwaiz1/cmp_luasnip",
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-nvim-lua",
+        "saecki/crates.nvim",
+        "saadparwaiz1/cmp_luasnip",
+        "rafamadriz/friendly-snippets",
+        "heavenshell/vim-jsdoc",
+        }
+    },
 
 	-- LSP
 	{

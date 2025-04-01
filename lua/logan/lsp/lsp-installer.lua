@@ -3,13 +3,13 @@ if not status_ok then
 	return
 end
 
-local status_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
-if not status_ok then
+local status_ok2, mason_lspconfig = pcall(require, "mason-lspconfig")
+if not status_ok2 then
 	return
 end
 
-local status_ok, lspconfig = pcall(require, "lspconfig")
-if not status_ok then
+local status_ok3, lspconfig = pcall(require, "lspconfig")
+if not status_ok3 then
 	return
 end
 
