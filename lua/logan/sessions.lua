@@ -1,4 +1,4 @@
-local status_ok, sessions = pcall(require, "session_manager")
+local status_ok, sessions = pcall(require, "persistance")
 if not status_ok then
     return
 end

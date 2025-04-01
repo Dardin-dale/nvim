@@ -1,6 +1,6 @@
 local opts = { noremap = true, silent = true }
 local term_opts = { silent = true }
-local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 
 -- Space as Leader key
 keymap("", "<Space>", "<Nop>", opts)
@@ -10,7 +10,7 @@ vim.g.localleader = " "
 -- Initialize which-key
 local wk_status_ok, wk = pcall(require, "which-key")
 if not wk_status_ok then
-	return
+    return
 end
 
 -- These mappings won't be tracked by which-key but are still useful
@@ -83,10 +83,14 @@ keymap("n", "<leader>fl", ":lua require('telescope.builtin').oldfiles()<cr>", op
 keymap("n", "<leader>fr", ":lua require('telescope').extensions.frecency.frecency()<CR>", opts)
 
 -- Session management
-keymap("n", "<leader>fs", ":SessionManager load_session<cr>", opts)
-keymap("n", "<leader>ns", ":SessionManager save_current_session<cr>", opts)
-keymap("n", "<leader>cs", ":SessionManager! load_current_dir_session<cr>", opts)
-keymap("n", "<leader>dds", ":SessionManager delete_session<cr>", opts)
+keymap("n", "<leader>fs", ":lua require('persistence').select()<CR>", opts)
+keymap("n", "<leader>sl", ":lua require('persistence').load({last = true})<CR>", opts)
+keymap("n", "<leader>ns", ":lua require('persistence').save()<CR>", opts)
+keymap("n", "<leader>ts", ":lua require('persistence').stop()<CR>", opts)
+--[[ keymap("n", "<leader>fs", ":SessionManager load_session<cr>", opts) ]]
+--[[ keymap("n", "<leader>ns", ":SessionManager save_current_session<cr>", opts) ]]
+--[[ keymap("n", "<leader>cs", ":SessionManager! load_current_dir_session<cr>", opts) ]]
+--[[ keymap("n", "<leader>dds", ":SessionManager delete_session<cr>", opts) ]]
 
 -- Harpoon/Marks
 keymap("n", "<leader>fm", ":lua require('harpoon.ui').toggle_quick_menu()<cr>", opts)
@@ -154,7 +158,7 @@ keymap("n", "<leader>zn", ":ZenMode<CR>", opts)
 wk.register({
     ["<C-h>"] = "Move left",
     ["<C-j>"] = "Move down",
-    ["<C-k>"] = "Move up", 
+    ["<C-k>"] = "Move up",
     ["<C-l>"] = "Move right",
 })
 
@@ -206,9 +210,10 @@ wk.register({
 
 -- Sessions
 wk.register({
-    ns = "Save session",
-    cs = "Load current dir session",
-    dds = "Delete session",
+    fs = "Find/select session", 
+    sl = "Load last session",     
+    ns = "Save session",           
+    ts = "Terminate session tracking",      
 }, { prefix = "<leader>" })
 
 -- Window resize

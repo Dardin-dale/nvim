@@ -50,7 +50,14 @@ local plugins = {
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	"xiyaowong/nvim-transparent",
 	"goolord/alpha-nvim",
-	"Shatur/neovim-session-manager",
+    {
+      "folke/persistence.nvim",
+      event = "BufReadPre", -- this will only start session saving when an actual file was opened
+      opts = {
+      }
+    },
+
+	--[[ "Shatur/neovim-session-manager", ]]
 	"folke/which-key.nvim",
 
 	-- Terminal
