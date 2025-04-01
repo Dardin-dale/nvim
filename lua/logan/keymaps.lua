@@ -83,10 +83,10 @@ keymap("n", "<leader>fl", ":lua require('telescope.builtin').oldfiles()<cr>", op
 keymap("n", "<leader>fr", ":lua require('telescope').extensions.frecency.frecency()<CR>", opts)
 
 -- Session management
-keymap("n", "<leader>fs", ":lua require('persistence').select()<CR>", opts)
-keymap("n", "<leader>sl", ":lua require('persistence').load({last = true})<CR>", opts)
-keymap("n", "<leader>ns", ":lua require('persistence').save()<CR>", opts)
-keymap("n", "<leader>ts", ":lua require('persistence').stop()<CR>", opts)
+--[[ keymap("n", "<leader>fs", ":lua require('persistence').select()<CR>", opts) ]]
+--[[ keymap("n", "<leader>sl", ":lua require('persistence').load({last = true})<CR>", opts) ]]
+--[[ keymap("n", "<leader>ns", ":lua require('persistence').save()<CR>", opts) ]]
+--[[ keymap("n", "<leader>ts", ":lua require('persistence').stop()<CR>", opts) ]]
 
 -- Harpoon/Marks
 keymap("n", "<leader>fm", ":lua require('harpoon.ui').toggle_quick_menu()<cr>", opts)

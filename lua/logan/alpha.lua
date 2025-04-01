@@ -26,8 +26,8 @@ dash.section.buttons.val = {
     dash.button("SPC f r", "  Frecency/MRU"),
     dash.button("SPC f g", "󰈬  Find word"),
     dash.button("SPC f m", "  Jump to bookmarks"),
-    dash.button("SPC f s", "󰥨  Pick Session"),
-    dash.button("SPC s l", "󰝉  Open last session"),
+    dash.button("SPC f s", "󰥨  Pick Session", ":lua require('persistence').select()<CR>"),
+    dash.button("SPC s l", "󰝉  Open last session", ":lua require('persistence').load({last = true})<CR>"),
     --[[ dash.button( "s", "  > Settings" , ":e %VIMRC% <CR>"), ]]
     dash.button("q", "  Quit NVIM", ":qa<CR>"),
 }
