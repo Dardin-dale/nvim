@@ -10,7 +10,7 @@ vim.g.localleader = " "
 -- Initialize which-key
 local wk_status_ok, wk = pcall(require, "which-key")
 if not wk_status_ok then
-    return
+	return
 end
 
 -- These mappings won't be tracked by which-key but are still useful
@@ -87,10 +87,6 @@ keymap("n", "<leader>fs", ":lua require('persistence').select()<CR>", opts)
 keymap("n", "<leader>sl", ":lua require('persistence').load({last = true})<CR>", opts)
 keymap("n", "<leader>ns", ":lua require('persistence').save()<CR>", opts)
 keymap("n", "<leader>ts", ":lua require('persistence').stop()<CR>", opts)
---[[ keymap("n", "<leader>fs", ":SessionManager load_session<cr>", opts) ]]
---[[ keymap("n", "<leader>ns", ":SessionManager save_current_session<cr>", opts) ]]
---[[ keymap("n", "<leader>cs", ":SessionManager! load_current_dir_session<cr>", opts) ]]
---[[ keymap("n", "<leader>dds", ":SessionManager delete_session<cr>", opts) ]]
 
 -- Harpoon/Marks
 keymap("n", "<leader>fm", ":lua require('harpoon.ui').toggle_quick_menu()<cr>", opts)
@@ -156,132 +152,132 @@ keymap("n", "<leader>zn", ":ZenMode<CR>", opts)
 
 -- DOCUMENTATION
 wk.register({
-    ["<C-h>"] = "Move left",
-    ["<C-j>"] = "Move down",
-    ["<C-k>"] = "Move up",
-    ["<C-l>"] = "Move right",
+	["<C-h>"] = "Move left",
+	["<C-j>"] = "Move down",
+	["<C-k>"] = "Move up",
+	["<C-l>"] = "Move right",
 })
 
 -- Clipboard
 wk.register({
-    p = "Paste from clipboard",
-    yy = "Line to clipboard",
-    ["y$"] = "To EOL to clipboard",
+	p = "Paste from clipboard",
+	yy = "Line to clipboard",
+	["y$"] = "To EOL to clipboard",
 }, { prefix = "<leader>" })
 
 -- Telescope
 wk.register({
-    ff = "Find files",
-    fg = "Live grep",
-    fb = "Buffers",
-    fh = "Help tags",
-    fl = "Recent files",
-    fr = "Frecency",
-    fs = "Find/load sessions",
+	ff = "Find files",
+	fg = "Live grep",
+	fb = "Buffers",
+	fh = "Help tags",
+	fl = "Recent files",
+	fr = "Frecency",
+	fs = "Find/load sessions",
 }, { prefix = "<leader>" })
 
 -- Document other non-leader keys
 wk.register({
-    ["<C-p>"] = "Find files",
-    ["gD"] = "LSP: Go to declaration",
-    ["gd"] = "LSP: Go to definition",
-    ["gi"] = "LSP: Go to implementation",
-    ["gr"] = "LSP: Find references",
-    ["gl"] = "LSP: Show diagnostic details",
+	["<C-p>"] = "Find files",
+	["gD"] = "LSP: Go to declaration",
+	["gd"] = "LSP: Go to definition",
+	["gi"] = "LSP: Go to implementation",
+	["gr"] = "LSP: Find references",
+	["gl"] = "LSP: Show diagnostic details",
 })
 
 -- Harpoon
 wk.register({
-    fm = "Marks menu",
-    ma = "Add mark",
-    mn = "Next mark",
-    mb = "Previous mark",
-    m1 = "Mark 1",
-    m2 = "Mark 2",
-    m3 = "Mark 3",
-    m4 = "Mark 4",
-    m5 = "Mark 5",
-    m6 = "Mark 6",
-    m7 = "Mark 7",
-    m8 = "Mark 8",
-    m9 = "Mark 9",
-    m0 = "Mark 10",
+	fm = "Marks menu",
+	ma = "Add mark",
+	mn = "Next mark",
+	mb = "Previous mark",
+	m1 = "Mark 1",
+	m2 = "Mark 2",
+	m3 = "Mark 3",
+	m4 = "Mark 4",
+	m5 = "Mark 5",
+	m6 = "Mark 6",
+	m7 = "Mark 7",
+	m8 = "Mark 8",
+	m9 = "Mark 9",
+	m0 = "Mark 10",
 }, { prefix = "<leader>" })
 
 -- Sessions
 wk.register({
-    fs = "Find/select session", 
-    sl = "Load last session",     
-    ns = "Save session",           
-    ts = "Terminate session tracking",      
+	fs = "Find/select session",
+	sl = "Load last session",
+	ns = "Save session",
+	ts = "Terminate session tracking",
 }, { prefix = "<leader>" })
 
 -- Window resize
 wk.register({
-    rp = "Resize to 120 height",
-    ["+"] = "Increase width",
-    ["-"] = "Decrease width",
+	rp = "Resize to 120 height",
+	["+"] = "Increase width",
+	["-"] = "Decrease width",
 }, { prefix = "<leader>" })
 
 -- Buffers
 wk.register({
-    bd = "Delete buffer",
-    w = "Write buffer",
+	bd = "Delete buffer",
+	w = "Write buffer",
 }, { prefix = "<leader>" })
 
 -- NvimTree
 wk.register({
-    e = "Toggle explorer",
+	e = "Toggle explorer",
 }, { prefix = "<leader>" })
 
 -- Formatting
 wk.register({
-    f = "Format file",
+	f = "Format file",
 }, { prefix = "<leader>" })
 
 -- Quickfix
 wk.register({
-    qn = "Next quickfix",
-    qp = "Previous quickfix",
-    qo = "Open quickfix",
-    qc = "Close quickfix",
+	qn = "Next quickfix",
+	qp = "Previous quickfix",
+	qo = "Open quickfix",
+	qc = "Close quickfix",
 }, { prefix = "<leader>" })
 
 -- Location list
 wk.register({
-    ln = "Next location",
-    lp = "Previous location",
-    lo = "Open location list",
-    lc = "Close location list",
-    lr = "LSP: Rename symbol",
-    la = "LSP: Code action",
-    lq = "LSP: Diagnostics to loclist",
+	ln = "Next location",
+	lp = "Previous location",
+	lo = "Open location list",
+	lc = "Close location list",
+	lr = "LSP: Rename symbol",
+	la = "LSP: Code action",
+	lq = "LSP: Diagnostics to loclist",
 }, { prefix = "<leader>" })
 
 -- Debugging
 wk.register({
-    ["db"] = "Toggle breakpoint",
-    ["dc"] = "Continue",
-    ["di"] = "Step into",
-    -- Use this syntax for 'do' since it's a Lua keyword
-    ["do"] = "Step over",
-    ["dr"] = "REPL",
-    ["dB"] = "Conditional breakpoint",
-    ["dl"] = "Logpoint",
+	["db"] = "Toggle breakpoint",
+	["dc"] = "Continue",
+	["di"] = "Step into",
+	-- Use this syntax for 'do' since it's a Lua keyword
+	["do"] = "Step over",
+	["dr"] = "REPL",
+	["dB"] = "Conditional breakpoint",
+	["dl"] = "Logpoint",
 }, { prefix = "<leader>" })
 
 -- Git
 wk.register({
-    gg = "LazyGit",
-    git = "LazyGit",
+	gg = "LazyGit",
+	git = "LazyGit",
 }, { prefix = "<leader>" })
 
 -- Node REPL
 wk.register({
-    node = "Node REPL",
+	node = "Node REPL",
 }, { prefix = "<leader>" })
 
 -- Zen Mode
 wk.register({
-    zn = "Zen Mode",
+	zn = "Zen Mode",
 }, { prefix = "<leader>" })
