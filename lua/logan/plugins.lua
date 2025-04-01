@@ -47,15 +47,20 @@ local plugins = {
 	"folke/zen-mode.nvim",
 	{ "akinsho/bufferline.nvim", version = "*" },
 	"moll/vim-bbye",
-	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		---@module "ibl"
+		---@type ibl.config
+		opts = {},
+	},
 	"xiyaowong/nvim-transparent",
 	"goolord/alpha-nvim",
-    {
-      "folke/persistence.nvim",
-      event = "BufReadPre", -- this will only start session saving when an actual file was opened
-      opts = {
-      }
-    },
+	{
+		"folke/persistence.nvim",
+		event = "BufReadPre", -- this will only start session saving when an actual file was opened
+		opts = {},
+	},
 
 	--[[ "Shatur/neovim-session-manager", ]]
 	"folke/which-key.nvim",
@@ -64,22 +69,22 @@ local plugins = {
 	{ "akinsho/toggleterm.nvim", version = "*" },
 
 	-- Completion and snippets
-    {
-	  "hrsh7th/nvim-cmp",
-      version = "*",
-      dependencies = {
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
-        "hrsh7th/cmp-cmdline",
-        "saadparwaiz1/cmp_luasnip",
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-nvim-lua",
-        "saecki/crates.nvim",
-        "saadparwaiz1/cmp_luasnip",
-        "rafamadriz/friendly-snippets",
-        "heavenshell/vim-jsdoc",
-        }
-    },
+	{
+		"hrsh7th/nvim-cmp",
+		version = "*",
+		dependencies = {
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
+			"saadparwaiz1/cmp_luasnip",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-nvim-lua",
+			"saecki/crates.nvim",
+			"saadparwaiz1/cmp_luasnip",
+			"rafamadriz/friendly-snippets",
+			"heavenshell/vim-jsdoc",
+		},
+	},
 
 	-- LSP
 	{

@@ -7,6 +7,7 @@ vim.g.indent_blankline_buftype_exclude = { "terminal", "nofile" }
 vim.g.indent_blankline_filetype_exclude = {
 	"help",
 	"startify",
+    "alpha",
 	"dashboard",
 	"packer",
 	"neogitstatus",
@@ -70,19 +71,4 @@ indent_blankline.setup({
 	--     "IndentBlanklineIndent5",
 	--     "IndentBlanklineIndent6",
 	-- },
-})
-
-vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI", "BufWinEnter", "InsertLeave" }, {
-	callback = function()
-		-- Force redraw of indent lines after text changes
-		if vim.bo.filetype ~= "alpha" and vim.bo.filetype ~= "dashboard" then
-			pcall(function()
-				if indent_blankline.refresh then
-					indent_blankline.refresh()
-				elseif indent_blankline.update then
-					indent_blankline.update()
-				end
-			end)
-		end
-	end,
 })

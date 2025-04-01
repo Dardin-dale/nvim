@@ -26,11 +26,3 @@ sessions.setup({
 		"lspinfo",
 	},
 })
-
-vim.api.nvim_create_autocmd({ "BufLeave" }, {
-	callback = function()
-		if vim.bo.filetype ~= "alpha" and vim.bo.filetype ~= "dashboard" then
-			require("persistence").save()
-		end
-	end,
-})
