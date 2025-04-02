@@ -14,6 +14,7 @@ sessions.setup({
 	-- when restored between sessions
 	exclude = {
 		"NvimTree",
+		"NvimTree_*",
 		"fugitive",
 		"gitcommit",
 		"help",

@@ -17,7 +17,7 @@ require("logan.gitsigns")
 require("logan.nvim-tree")
 require("logan.bufferline")
 require("logan.toggleterm")
--- require "logan.indentline"
+--[[ require("logan.indentline") ]]
 -- require "logan.transparent"
 require("logan.harpoon")
 require("logan.gitconflict")

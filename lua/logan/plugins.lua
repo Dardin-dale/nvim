@@ -47,21 +47,16 @@ local plugins = {
 	"folke/zen-mode.nvim",
 	{ "akinsho/bufferline.nvim", version = "*" },
 	"moll/vim-bbye",
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		main = "ibl",
-		---@module "ibl"
-		---@type ibl.config
-		opts = {},
-	},
+	--[[ { ]]
+	--[[ 	"lukas-reineke/indent-blankline.nvim", ]]
+	--[[ 	main = "ibl", ]]
+	--[[ }, ]]
 	"xiyaowong/nvim-transparent",
 	"goolord/alpha-nvim",
 	{
 		"folke/persistence.nvim",
 		event = "BufReadPre", -- this will only start session saving when an actual file was opened
-		opts = {},
 	},
-
 	--[[ "Shatur/neovim-session-manager", ]]
 	"folke/which-key.nvim",
 
