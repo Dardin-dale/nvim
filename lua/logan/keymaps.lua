@@ -3,7 +3,7 @@ local term_opts = { silent = true }
 local keymap = vim.keymap.set
 
 -- Space as Leader key
-keymap("", "<Space>", "<Nop>", opts)
+--[[ keymap("", "<Space>", "<Nop>", opts) ]]
 vim.g.mapleader = " "
 vim.g.localleader = " "
 
