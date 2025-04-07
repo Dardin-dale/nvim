@@ -17,12 +17,3 @@ gitconflict.setup({
 		current = "DiffAdd",
 	},
 })
-
-wk.register({
-	co = { "<cmd>GitConflictChooseOurs<CR>", "Git Conflict: Choose Ours" },
-	ct = { "<cmd>GitConflictChooseTheirs<CR>", "Git Conflict: Choose Theirs" },
-	cb = { "<cmd>GitConflictChooseBoth<CR>", "Git Conflict: Choose Both" },
-	c0 = { "<cmd>GitConflictChooseNone<CR>", "Git Conflict: Choose None" },
-	["[x"] = { "<cmd>GitConflictPrevConflict<CR>", "Git Conflict: Previous Conflict" },
-	["]x"] = { "<cmd>GitConflictNextConflict<CR>", "Git Conflict: Next Conflict" },
-})

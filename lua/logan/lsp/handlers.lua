@@ -86,31 +86,31 @@ local function lsp_keymaps(bufnr)
 	-- Add leader+l+a for code actions
 	keymap("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>")
 
-	-- Document these keymaps with which-key (buffer-local)
-	local wk_status_ok, wk = pcall(require, "which-key")
-	if wk_status_ok then
-		-- Register the non-leader LSP mappings
-		wk.register({
-			{ "gD", desc = "Go to declaration" },
-			{ "gd", desc = "Go to definition" },
-			{ "<S-K>", desc = "Show hover" },
-			{ "gi", desc = "Go to implementation" },
-			{ "gk", desc = "Show signature help" },
-			{ "gr", desc = "Find references" },
-			{ "[d", desc = "Previous diagnostic" },
-			{ "]d", desc = "Next diagnostic" },
-			{ "gl", desc = "Show diagnostic details" },
-		}, { buffer = bufnr })
-
-		-- Register the leader LSP mappings under the existing LSP group
-		wk.register({
-			l = {
-				q = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Diagnostics to loclist" },
-				r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename symbol" },
-				a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code action" },
-			},
-		}, { buffer = bufnr, prefix = "<leader>" })
-	end
+	--[[ -- Document these keymaps with which-key (buffer-local) ]]
+	--[[ local wk_status_ok, wk = pcall(require, "which-key") ]]
+	--[[ if wk_status_ok then ]]
+	--[[ 	-- Register the non-leader LSP mappings ]]
+	--[[ 	wk.register({ ]]
+	--[[ 		{ "gD", desc = "Go to declaration" }, ]]
+	--[[ 		{ "gd", desc = "Go to definition" }, ]]
+	--[[ 		{ "<S-K>", desc = "Show hover" }, ]]
+	--[[ 		{ "gi", desc = "Go to implementation" }, ]]
+	--[[ 		{ "gk", desc = "Show signature help" }, ]]
+	--[[ 		{ "gr", desc = "Find references" }, ]]
+	--[[ 		{ "[d", desc = "Previous diagnostic" }, ]]
+	--[[ 		{ "]d", desc = "Next diagnostic" }, ]]
+	--[[ 		{ "gl", desc = "Show diagnostic details" }, ]]
+	--[[ 	}, { buffer = bufnr }) ]]
+	--[[]]
+	--[[ 	-- Register the leader LSP mappings under the existing LSP group ]]
+	--[[ 	wk.register({ ]]
+	--[[ 		l = { ]]
+	--[[ 			q = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Diagnostics to loclist" }, ]]
+	--[[ 			r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename symbol" }, ]]
+	--[[ 			a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code action" }, ]]
+	--[[ 		}, ]]
+	--[[ 	}, { buffer = bufnr, prefix = "<leader>" }) ]]
+	--[[ end ]]
 
 	-- Format command (use your conform.nvim setup instead)
 	vim.cmd("command! -buffer Format lua vim.lsp.buf.format({ async = true })")

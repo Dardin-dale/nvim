@@ -150,134 +150,141 @@ keymap("n", "<leader>node", ":lua _NODE_TOGGLE()<cr>", opts)
 -- Zen Mode
 keymap("n", "<leader>zn", ":ZenMode<CR>", opts)
 
--- DOCUMENTATION
-wk.register({
-	["<C-h>"] = "Move left",
-	["<C-j>"] = "Move down",
-	["<C-k>"] = "Move up",
-	["<C-l>"] = "Move right",
+wk.add({
+	-- Window movement
+	{ "<C-h>", desc = "Move left" },
+	{ "<C-j>", desc = "Move down" },
+	{ "<C-k>", desc = "Move up" },
+	{ "<C-l>", desc = "Move right" },
+
+	-- Non-leader keys
+	{ "<C-p>", desc = "Find files" },
+	{ "gD", desc = "LSP: Go to declaration" },
+	{ "gd", desc = "LSP: Go to definition" },
+	{ "gi", desc = "LSP: Go to implementation" },
+	{ "gr", desc = "LSP: Find references" },
+	{ "gl", desc = "LSP: Show diagnostic details" },
+
+	-- Leader prefixed commands
+	{ "<leader>", group = "Leader" },
+
+	-- Clipboard
+	{ "<leader>p", '"+p', desc = "Paste from clipboard" },
+	{ "<leader>yy", '"+yy', desc = "Line to clipboard" },
+	{ "<leader>y$", '"+y$', desc = "To EOL to clipboard" },
+
+	-- Telescope
+	{ "<leader>f", group = "Find/Files" },
+	{ "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", desc = "Find files" },
+	{ "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<cr>", desc = "Live grep" },
+	{ "<leader>fb", "<cmd>lua require('telescope.builtin').buffers()<cr>", desc = "Buffers" },
+	{ "<leader>fh", "<cmd>lua require('telescope.builtin').help_tags()<cr>", desc = "Help tags" },
+	{ "<leader>fl", "<cmd>lua require('telescope.builtin').oldfiles()<cr>", desc = "Recent files" },
+	{ "<leader>fr", "<cmd>lua require('telescope').extensions.frecency.frecency()<CR>", desc = "Frecency" },
+	{ "<leader>fs", "<cmd>lua require('persistence').select()<CR>", desc = "Find/load sessions" },
+
+	-- Harpoon/Marks
+	{ "<leader>m", group = "Marks" },
+	{ "<leader>fm", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", desc = "Marks menu" },
+	{ "<leader>ma", "<cmd>lua require('harpoon.mark').add_file()<cr>", desc = "Add mark" },
+	{ "<leader>mn", "<cmd>lua require('harpoon.ui').nav_next()<cr>", desc = "Next mark" },
+	{ "<leader>mb", "<cmd>lua require('harpoon.ui').nav_prev()<cr>", desc = "Previous mark" },
+	{ "<leader>m1", "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", desc = "Mark 1" },
+	{ "<leader>m2", "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", desc = "Mark 2" },
+	{ "<leader>m3", "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", desc = "Mark 3" },
+	{ "<leader>m4", "<cmd>lua require('harpoon.ui').nav_file(4)<cr>", desc = "Mark 4" },
+	{ "<leader>m5", "<cmd>lua require('harpoon.ui').nav_file(5)<cr>", desc = "Mark 5" },
+	{ "<leader>m6", "<cmd>lua require('harpoon.ui').nav_file(6)<cr>", desc = "Mark 6" },
+	{ "<leader>m7", "<cmd>lua require('harpoon.ui').nav_file(7)<cr>", desc = "Mark 7" },
+	{ "<leader>m8", "<cmd>lua require('harpoon.ui').nav_file(8)<cr>", desc = "Mark 8" },
+	{ "<leader>m9", "<cmd>lua require('harpoon.ui').nav_file(9)<cr>", desc = "Mark 9" },
+	{ "<leader>m0", "<cmd>lua require('harpoon.ui').nav_file(10)<cr>", desc = "Mark 10" },
+
+	-- Sessions
+	{ "<leader>s", group = "Sessions" },
+	{ "<leader>sl", "<cmd>lua require('persistence').load({last = true})<CR>", desc = "Load last session" },
+	{ "<leader>ss", "<cmd>lua require('persistence').save()<CR>", desc = "Save session" },
+	{ "<leader>sx", "<cmd>lua require('persistence').stop()<CR>", desc = "Terminate session tracking" },
+
+	-- Window resize
+	{ "<leader>r", group = "Resize" },
+	{ "<leader>rp", "<cmd>resize 120<CR>", desc = "Resize to 120 height" },
+	{ "<leader>+", "<cmd>vertical resize +5<CR>", desc = "Increase width" },
+	{ "<leader>-", "<cmd>vertical resize -5<CR>", desc = "Decrease width" },
+
+	-- Buffers
+	{ "<leader>b", group = "Buffers" },
+	{ "<leader>bd", "<cmd>Bdelete!<cr>", desc = "Delete buffer" },
+	{ "<leader>w", "<cmd>w!<cr>", desc = "Write buffer" },
+
+	-- NvimTree
+	{ "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Toggle explorer" },
+
+	-- Formatting
+	{
+		"<leader>f",
+		"<cmd>lua require('conform').format({ async = true, lsp_fallback = true })<CR>",
+		desc = "Format file",
+	},
+
+	-- Quickfix
+	{ "<leader>q", group = "Quickfix" },
+	{ "<leader>qn", "<cmd>cnext<CR>", desc = "Next quickfix" },
+	{ "<leader>qp", "<cmd>cprev<CR>", desc = "Previous quickfix" },
+	{ "<leader>qo", "<cmd>copen<CR>", desc = "Open quickfix" },
+	{ "<leader>qc", "<cmd>cclose<CR>", desc = "Close quickfix" },
+
+	-- Location list
+	{ "<leader>l", group = "Location/LSP" },
+	{ "<leader>ln", "<cmd>lnext<CR>", desc = "Next location" },
+	{ "<leader>lp", "<cmd>lprev<CR>", desc = "Previous location" },
+	{ "<leader>lo", "<cmd>lopen<CR>", desc = "Open location list" },
+	{ "<leader>lc", "<cmd>lclose<CR>", desc = "Close location list" },
+	{ "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", desc = "LSP: Rename symbol" },
+	{ "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "LSP: Code action" },
+	{ "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", desc = "LSP: Diagnostics to loclist" },
+
+	-- Debugging
+	{ "<leader>d", group = "Debug" },
+	{ "<leader>db", "<cmd>lua require('dap').toggle_breakpoint()<CR>", desc = "Toggle breakpoint" },
+	{ "<leader>dc", "<cmd>lua require('dap').continue()<CR>", desc = "Continue" },
+	{ "<leader>di", "<cmd>lua require('dap').step_into()<CR>", desc = "Step into" },
+	{ "<leader>do", "<cmd>lua require('dap').step_over()<CR>", desc = "Step over" },
+	{ "<leader>dr", "<cmd>lua require('dap').repl.open()<CR>", desc = "REPL" },
+	{
+		"<leader>dB",
+		"<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+		desc = "Conditional breakpoint",
+	},
+	{
+		"<leader>dl",
+		"<cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
+		desc = "Logpoint",
+	},
+
+	-- Git
+	{ "<leader>g", group = "Git" },
+	{ "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", desc = "LazyGit" },
+	{ "<leader>git", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", desc = "LazyGit" },
+
+	-- Git Conflict (from your other config)
+	{ "co", "<cmd>GitConflictChooseOurs<CR>", desc = "Git Conflict: Choose Ours" },
+	{ "ct", "<cmd>GitConflictChooseTheirs<CR>", desc = "Git Conflict: Choose Theirs" },
+	{ "cb", "<cmd>GitConflictChooseBoth<CR>", desc = "Git Conflict: Choose Both" },
+	{ "c0", "<cmd>GitConflictChooseNone<CR>", desc = "Git Conflict: Choose None" },
+	{ "[x", "<cmd>GitConflictPrevConflict<CR>", desc = "Git Conflict: Previous Conflict" },
+	{ "]x", "<cmd>GitConflictNextConflict<CR>", desc = "Git Conflict: Next Conflict" },
+
+	-- Node REPL
+	{ "<leader>node", "<cmd>lua _NODE_TOGGLE()<cr>", desc = "Node REPL" },
+
+	-- Zen Mode
+	{ "<leader>z", group = "Zen" },
+	{ "<leader>zn", "<cmd>ZenMode<CR>", desc = "Zen Mode" },
+
+	-- LSP mappings from your other config
+	{ "<S-K>", desc = "Show hover" },
+	{ "gk", desc = "Show signature help" },
+	{ "[d", desc = "Previous diagnostic" },
+	{ "]d", desc = "Next diagnostic" },
 })
-
--- Clipboard
-wk.register({
-	p = "Paste from clipboard",
-	yy = "Line to clipboard",
-	["y$"] = "To EOL to clipboard",
-}, { prefix = "<leader>" })
-
--- Telescope
-wk.register({
-	ff = "Find files",
-	fg = "Live grep",
-	fb = "Buffers",
-	fh = "Help tags",
-	fl = "Recent files",
-	fr = "Frecency",
-	fs = "Find/load sessions",
-}, { prefix = "<leader>" })
-
--- Document other non-leader keys
-wk.register({
-	["<C-p>"] = "Find files",
-	["gD"] = "LSP: Go to declaration",
-	["gd"] = "LSP: Go to definition",
-	["gi"] = "LSP: Go to implementation",
-	["gr"] = "LSP: Find references",
-	["gl"] = "LSP: Show diagnostic details",
-})
-
--- Harpoon
-wk.register({
-	fm = "Marks menu",
-	ma = "Add mark",
-	mn = "Next mark",
-	mb = "Previous mark",
-	m1 = "Mark 1",
-	m2 = "Mark 2",
-	m3 = "Mark 3",
-	m4 = "Mark 4",
-	m5 = "Mark 5",
-	m6 = "Mark 6",
-	m7 = "Mark 7",
-	m8 = "Mark 8",
-	m9 = "Mark 9",
-	m0 = "Mark 10",
-}, { prefix = "<leader>" })
-
--- Sessions
-wk.register({
-	fs = "Find/select session",
-	sl = "Load last session",
-	ns = "Save session",
-	ts = "Terminate session tracking",
-}, { prefix = "<leader>" })
-
--- Window resize
-wk.register({
-	rp = "Resize to 120 height",
-	["+"] = "Increase width",
-	["-"] = "Decrease width",
-}, { prefix = "<leader>" })
-
--- Buffers
-wk.register({
-	bd = "Delete buffer",
-	w = "Write buffer",
-}, { prefix = "<leader>" })
-
--- NvimTree
-wk.register({
-	e = "Toggle explorer",
-}, { prefix = "<leader>" })
-
--- Formatting
-wk.register({
-	f = "Format file",
-}, { prefix = "<leader>" })
-
--- Quickfix
-wk.register({
-	qn = "Next quickfix",
-	qp = "Previous quickfix",
-	qo = "Open quickfix",
-	qc = "Close quickfix",
-}, { prefix = "<leader>" })
-
--- Location list
-wk.register({
-	ln = "Next location",
-	lp = "Previous location",
-	lo = "Open location list",
-	lc = "Close location list",
-	lr = "LSP: Rename symbol",
-	la = "LSP: Code action",
-	lq = "LSP: Diagnostics to loclist",
-}, { prefix = "<leader>" })
-
--- Debugging
-wk.register({
-	["db"] = "Toggle breakpoint",
-	["dc"] = "Continue",
-	["di"] = "Step into",
-	-- Use this syntax for 'do' since it's a Lua keyword
-	["do"] = "Step over",
-	["dr"] = "REPL",
-	["dB"] = "Conditional breakpoint",
-	["dl"] = "Logpoint",
-}, { prefix = "<leader>" })
-
--- Git
-wk.register({
-	gg = "LazyGit",
-	git = "LazyGit",
-}, { prefix = "<leader>" })
-
--- Node REPL
-wk.register({
-	node = "Node REPL",
-}, { prefix = "<leader>" })
-
--- Zen Mode
-wk.register({
-	zn = "Zen Mode",
-}, { prefix = "<leader>" })
