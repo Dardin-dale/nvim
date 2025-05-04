@@ -36,7 +36,8 @@ local plugins = {
     },
     {
         "nvim-tree/nvim-tree.lua",
-        tag = "nightly",
+        version = "*",
+        lazy = false,
     },
     "numToStr/Comment.nvim",
     {
