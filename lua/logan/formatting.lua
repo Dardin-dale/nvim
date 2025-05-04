@@ -42,13 +42,41 @@ conform.setup({
 		},
 	},
 	format_on_save = {
-		enabled = false, -- Disabled by default
+		-- You can change this to true if you want automatic formatting
+		enabled = false, 
 		timeout_ms = 500,
 		lsp_fallback = true,
 	},
+	-- This will run before formatting
+	format_before_save = function(bufnr)
+		-- Optional: close LSP diagnostics float windows before formatting
+		-- to prevent position conflicts
+		vim.lsp.diagnostic.hide_all()
+		return true -- return true to continue formatting, false to abort
+	end,
 })
 
 -- Define a command to manually format
 vim.api.nvim_create_user_command("Format", function()
 	conform.format({ async = true, lsp_fallback = true })
 end, {})
+
+-- Keybinding to toggle format-on-save (added functionality)
+vim.api.nvim_create_user_command("ToggleFormatOnSave", function()
+	local current = conform.get_config().format_on_save.enabled
+	conform.setup({ format_on_save = { enabled = not current } })
+	vim.notify("Format on save: " .. (not current and "enabled" or "disabled"))
+end, {})
+
+-- Add the toggle format keybinding
+vim.keymap.set("n", "<leader>tf", ":ToggleFormatOnSave<CR>", { noremap = true, silent = true, desc = "Toggle format on save" })
+
+-- Register with which-key
+local wk_status_ok, wk = pcall(require, "which-key")
+if wk_status_ok then
+	wk.register({
+		t = {
+			f = { ":ToggleFormatOnSave<CR>", "Toggle format on save" },
+		},
+	}, { prefix = "<leader>" })
+end
