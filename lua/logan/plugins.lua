@@ -38,6 +38,12 @@ local plugins = {
         "nvim-tree/nvim-tree.lua",
         version = "*",
         lazy = false,
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
+        },
+        config = function()
+            require("logan.nvim-tree")
+        end,
     },
     "numToStr/Comment.nvim",
     {
