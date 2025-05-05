@@ -17,8 +17,9 @@ conform.setup({
         css = { "prettierd", "prettier" },
         python = { "black" },
         rust = { "rustfmt" },
-        java = { "google-java-format" },
-        dart = { "dart_format", "dart_sed_indent" },
+        --[[ java = { "google_java_format_file", "don_conditional_newline" }, ]]
+        java = { "eclipse_jdtls", "don_conditional_newline" },
+        dart = { "dart_format", "dart_sed_indent", "don_conditional_newline" },
         -- Config formats
         yaml = { "prettier" },
         toml = { "taplo" },
@@ -29,11 +30,15 @@ conform.setup({
         stylua = {
             prepend_args = { "--indent-type", "Spaces", "--indent-width", "4" },
         },
-        ["google-java-format"] = {
-            command = "google-java-format",
-            args = { "--aosp", "-" },
-            stdin = true,
-        },
+        --[[ google_java_format_file = { ]]
+        --[[     command = "google-java-format", ]]
+        --[[     -- --aosp for style, --replace to modify file in-place ]]
+        --[[     args = { "--aosp", "--replace", "$FILENAME" }, ]]
+        --[[     stdin = false, -- Operates on the file specified in args ]]
+        --[[     condition = function() ]]
+        --[[         return vim.fn.executable("google-java-format") == 1 ]]
+        --[[     end, ]]
+        --[[ }, ]]
         prettier = {
             prepend_args = { "--tab-width", "4", "--print-width", "80" },
         },
@@ -67,6 +72,20 @@ conform.setup({
             command = "sed",
             args = { "-i", "s/^ */&&/", "$FILENAME" },
             stdin = false, -- sed -i requires file access
+            condition = function()
+                return vim.fn.executable("sed") == 1
+            end,
+        },
+        don_conditional_newline = {
+            command = "sed",
+            -- sed pattern needs careful escaping in Lua string:
+            -- \ becomes \\, ( becomes \\( etc. \n is fine, \1 is fine.
+            args = {
+                "-i",
+                "s/^\\([[:space:]]*\\)}[[:space:]]*else\\b/\\1}\\n\\1else/",
+                "$FILENAME",
+            },
+            stdin = false, -- sed -i operates on the file
             condition = function()
                 return vim.fn.executable("sed") == 1
             end,
