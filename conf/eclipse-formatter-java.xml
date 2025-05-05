@@ -46,17 +46,27 @@
     value="end_of_line" />
 
   <!-- Control Statements ('else' on new line) -->
-  <setting id="org.eclipse.jdt.core.formatter.keep_then_statement_on_same_line" value="false" />
-  <setting id="org.eclipse.jdt.core.formatter.keep_else_statement_on_same_line" value="false" /> <!--
-  This forces 'else' onto a new line -->
+  <!-- Allow simple 'if (cond) statement;' on one line if it fits. -->
+  <!-- Requires both 'keep_then...' and 'keep_simple_if...' to be true. -->
+  <setting id="org.eclipse.jdt.core.formatter.keep_then_statement_on_same_line" value="true" />
+  <setting id="org.eclipse.jdt.core.formatter.keep_simple_if_on_one_line" value="true" />
+
+  <!-- Force 'else' (and 'else if') onto a new line after a preceding '}' -->
+  <setting id="org.eclipse.jdt.core.formatter.keep_else_statement_on_same_line" value="false" />
+  <setting id="org.eclipse.jdt.core.formatter.insert_new_line_before_else_in_if_statement"
+    value="insert" />
+  <!-- Explicitly insert newline before 'catch' in try statements -->
+  <setting id="org.eclipse.jdt.core.formatter.insert_new_line_before_catch_in_try_statement"
+    value="insert" />
+
+  <!-- Explicitly insert newline before 'finally' in try statements -->
+  <setting id="org.eclipse.jdt.core.formatter.insert_new_line_before_finally_in_try_statement"
+    value="insert" />
+
+  <!-- Keep other related settings as they were (assuming intentional) -->
   <setting id="org.eclipse.jdt.core.formatter.keep_empty_array_initializer_on_one_line"
     value="false" />
-  <setting id="org.eclipse.jdt.core.formatter.keep_simple_if_on_one_line" value="false" />
   <setting id="org.eclipse.jdt.core.formatter.keep_guardian_clause_on_one_line" value="false" />
-  <setting id="org.eclipse.jdt.core.formatter.keep_then_statement_on_same_line" value="true" />
-
-  <!-- Specifically allow keeping the entire 'if (cond) statement;' on one line if it's simple -->
-  <setting id="org.eclipse.jdt.core.formatter.keep_simple_if_on_one_line" value="true" />
 
   <!-- White Space -->
   <setting id="org.eclipse.jdt.core.formatter.insert_space_after_and_in_type_parameter"

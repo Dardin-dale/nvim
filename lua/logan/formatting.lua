@@ -18,8 +18,8 @@ conform.setup({
         python = { "black" },
         rust = { "rustfmt" },
         --[[ java = { "google_java_format_file", "don_conditional_newline" }, ]]
-        java = { "eclipse_jdtls", "don_conditional_newline" },
-        dart = { "dart_format", "dart_sed_indent", "don_conditional_newline" },
+        --[[ java = { "lsp_force", "don_conditional_newline" }, ]]
+        dart = { "dart_format", "dart_sed_indent", "don_conditional_newline", "don_try_catch_newline" },
         -- Config formats
         yaml = { "prettier" },
         toml = { "taplo" },
@@ -39,6 +39,7 @@ conform.setup({
         --[[         return vim.fn.executable("google-java-format") == 1 ]]
         --[[     end, ]]
         --[[ }, ]]
+
         prettier = {
             prepend_args = { "--tab-width", "4", "--print-width", "80" },
         },
@@ -90,6 +91,41 @@ conform.setup({
                 return vim.fn.executable("sed") == 1
             end,
         },
+        don_try_catch_newline = {
+            command = "sed",
+            -- Chain two substitutions: one for catch, one for finally
+            -- Remember Lua escaping: \ -> \\, ( -> \\(, ) -> \\)
+            args = {
+                "-i",
+                "s/^\\([[:space:]]*\\)}[[:space:]]*catch\\b/\\1}\\n\\1catch/;" -- catch part
+                    .. "s/^\\([[:space:]]*\\)}[[:space:]]*finally\\b/\\1}\\n\\1finally/", -- finally part
+                "$FILENAME",
+            },
+            stdin = false, -- sed -i operates on the file
+            condition = function()
+                return vim.fn.executable("sed") == 1
+            end,
+        },
+        --[[ lsp_force = { ]]
+        --[[     meta = { ]]
+        --[[         url = "https://neovim.io/doc/user/lsp.html", ]]
+        --[[         description = "Forces LSP formatting using vim.lsp.buf.format", ]]
+        --[[     }, ]]
+        --[[     format = function(self, ctx) ]]
+        --[[         local bufnr = ctx.buf ]]
+        --[[]]
+        --[[         -- Format using LSP ]]
+        --[[         vim.lsp.buf.format({ ]]
+        --[[             bufnr = bufnr, ]]
+        --[[             timeout_ms = 5000, ]]
+        --[[             async = false, ]]
+        --[[         }) ]]
+        --[[]]
+        --[[         -- Since we're modifying the buffer directly, return true to indicate success ]]
+        --[[         return true ]]
+        --[[     end, ]]
+        --[[     stdin = false, ]]
+        --[[ }, ]]
     },
     default_format_opts = {
         timeout_ms = 3000,

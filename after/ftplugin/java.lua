@@ -65,9 +65,10 @@ local config = {
                 enabled = true, -- Optional, true by default if URL/profile is set
                 settings = {
                     -- Point to the XML file you created
-                    url = vim.fn.expand("~/sw/dotfile/nvim/conf/eclipse-formatter-java.xml"),
+                    url = "file://" .. vim.fn.expand("~/sw/dotfiles/nvim/conf/eclipse-formatter-java.xml"),
+                    --[[ url = vim.fn.expand("~/sw/dotfiles/nvim/conf/test-eclipse.xml"), ]]
                     -- Alternatively, you can define profiles within the XML and reference by name:
-                    -- profile = "CustomJava120",
+                    profile = "CustomJava120",
                 },
             },
         },
