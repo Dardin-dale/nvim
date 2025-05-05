@@ -162,8 +162,35 @@ mason_lspconfig.setup_handlers({
 	["jdtls"] = noop,
 })
 
+local function setup_dart_workspace()
+	local project_root = "/home/logan/sw/dynoshop1"
+
+	-- Define all the workspace folders to include
+	local workspace_folders = {
+		{
+			name = "project_root",
+			uri = "file://" .. project_root,
+		},
+		{
+			name = "store",
+			uri = "file://" .. project_root .. "/store",
+		},
+		{
+			name = "storeMgt",
+			uri = "file://" .. project_root .. "/storeMgt",
+		},
+		{
+			name = "shared",
+			uri = "file://" .. project_root .. "/shared",
+		},
+	}
+
+	return workspace_folders
+end
+
 lspconfig.dartls.setup({
 	cmd = { "dart", "language-server", "--protocol=lsp" },
 	on_attach = opts.on_attach,
 	capabilities = opts.capabilities,
+	workspace_folders = setup_dart_workspace(),
 })

@@ -27,7 +27,7 @@ conform.setup({
 	formatters = {
 		-- AOSP style (4 spaces) for Java
 		google_java_format = {
-			prepend_args = { "--aosp" },
+			args = { "--aosp" },
 		},
 		-- 4-space indentation for JavaScript/TypeScript/etc.
 		prettier = {
@@ -39,6 +39,9 @@ conform.setup({
 		-- XML formatting
 		xmllint = {
 			args = { "--format", "-" },
+		},
+		dart_format = {
+			args = { "--line-length=100", "--fix" }, -- Default args, modify as needed
 		},
 	},
 	format_on_save = {
