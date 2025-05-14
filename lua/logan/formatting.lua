@@ -63,9 +63,13 @@ conform.setup({
         dart_format = {
             command = "dart",
             args = { "format", "$FILENAME" },
-            stdin = false, -- Ensure it modifies the file
+            stdin = false, -- dart format modifies the file directly
             condition = function()
-                return vim.fn.executable("dart") == 1
+                local dart_exe = vim.fn.executable("dart") == 1
+                if not dart_exe then
+                    vim.notify("dart executable not found for conform.nvim", vim.log.levels.WARN)
+                end
+                return dart_exe
             end,
         },
         -- Define the sed step, which also needs the file
@@ -145,18 +149,47 @@ conform.setup({
 vim.api.nvim_create_user_command("Format", function()
     conform.format({ async = true, lsp_fallback = true })
 end, {})
-vim.api.nvim_create_user_command("ToggleFormatOnSave", function()
-    local conf = require("conform").get_config()
-    local current_enabled = conf.format_on_save and conf.format_on_save.enabled or false
-    local new_enabled = not current_enabled
 
-    conform.setup({
-        format_on_save = vim.tbl_deep_extend("force", conf.format_on_save or {}, {
-            enabled = new_enabled,
-        }),
-    })
-    vim.notify("Format on save: " .. (new_enabled and "enabled" or "disabled"))
-end, {})
+-- New Toggle Command
+vim.api.nvim_create_user_command("ToggleFormatOnSave", function()
+    vim.g.disable_autoformat = not vim.g.disable_autoformat
+    if vim.g.disable_autoformat then
+        vim.notify("Format on save: disabled globally", vim.log.levels.INFO)
+    else
+        vim.notify("Format on save: enabled globally (unless buffer override)", vim.log.levels.INFO)
+        -- Optionally, you could clear buffer-local disables when enabling globally
+        -- for _, bnr in ipairs(vim.api.nvim_list_bufs()) do
+        --   if vim.api.nvim_buf_is_loaded(bnr) then
+        --     vim.b[bnr].disable_autoformat = false
+        --   end
+        -- end
+    end
+end, {
+    desc = "Toggle autoformat-on-save globally",
+})
+
+-- For buffer-local disabling (from conform docs)
+vim.api.nvim_create_user_command("FormatDisable", function(args)
+    if args.bang then
+        vim.b.disable_autoformat = true
+        vim.notify("Format on save: disabled for current buffer", vim.log.levels.INFO)
+    else
+        vim.g.disable_autoformat = true
+        vim.notify("Format on save: disabled globally", vim.log.levels.INFO)
+    end
+end, {
+    desc = "Disable autoformat-on-save (globally or [!]buffer)",
+    bang = true,
+})
+
+-- For buffer-local/global enabling (from conform docs)
+vim.api.nvim_create_user_command("FormatEnable", function()
+    vim.b.disable_autoformat = false
+    vim.g.disable_autoformat = false
+    vim.notify("Format on save: enabled (globally and for current buffer)", vim.log.levels.INFO)
+end, {
+    desc = "Re-enable autoformat-on-save",
+})
 
 vim.keymap.set(
     "n",
@@ -165,12 +198,18 @@ vim.keymap.set(
     { noremap = true, silent = true, desc = "Toggle format on save" }
 )
 
--- which-key integration seems fine
+vim.keymap.set("n", "<leader>tF", ":FormatDisable!<CR>", { desc = "Disable format on save (Buffer)" })
+vim.keymap.set("n", "<leader>tE", ":FormatEnable<CR>", { desc = "Enable format on save (Global & Buffer)" })
+
 local wk_status_ok, wk = pcall(require, "which-key")
 if wk_status_ok then
     wk.register({
         t = {
-            f = { ":ToggleFormatOnSave<CR>", "Toggle format on save" },
+            name = "+Toggle", -- Group name for toggles
+            f = { ":ToggleFormatOnSave<CR>", "Format on Save (Global)" },
+            -- Example for buffer-local if you add keymaps:
+            -- F = { ":FormatDisable!<CR>", "Format on Save (Buffer Disable)" },
+            -- E = { ":FormatEnable<CR>", "Format on Save (Enable)" },
         },
     }, { prefix = "<leader>" })
 end

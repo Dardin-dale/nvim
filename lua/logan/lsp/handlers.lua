@@ -3,9 +3,9 @@ local M = {}
 M.setup = function()
     local signs = {
         { name = "DiagnosticSignError", text = "" },
-        { name = "DiagnosticSignWarn",  text = "" },
-        { name = "DiagnosticSignHint",  text = "" },
-        { name = "DiagnosticSignInfo",  text = "" },
+        { name = "DiagnosticSignWarn", text = "" },
+        { name = "DiagnosticSignHint", text = "" },
+        { name = "DiagnosticSignInfo", text = "" },
     }
 
     for _, sign in ipairs(signs) do
@@ -95,15 +95,15 @@ local function lsp_keymaps(bufnr)
     if wk_status_ok then
         -- Register the non-leader LSP mappings
         wk.register({
-            { "gD",    desc = "Go to declaration" },
-            { "gd",    desc = "Go to definition" },
+            { "gD", desc = "Go to declaration" },
+            { "gd", desc = "Go to definition" },
             { "<S-K>", desc = "Show hover" },
-            { "gi",    desc = "Go to implementation" },
-            { "gk",    desc = "Show signature help" },
-            { "gr",    desc = "Find references" },
-            { "[d",    desc = "Previous diagnostic" },
-            { "]d",    desc = "Next diagnostic" },
-            { "gl",    desc = "Show diagnostic details" },
+            { "gi", desc = "Go to implementation" },
+            { "gk", desc = "Show signature help" },
+            { "gr", desc = "Find references" },
+            { "[d", desc = "Previous diagnostic" },
+            { "]d", desc = "Next diagnostic" },
+            { "gl", desc = "Show diagnostic details" },
         }, { buffer = bufnr })
 
         -- Register the leader LSP mappings under the existing LSP group
@@ -120,7 +120,12 @@ end
 
 M.on_attach = function(client, bufnr)
     -- Disable formatting for certain clients if conform.nvim is handling it
-    if client.name == "tsserver" or client.name == "lua_ls" or client.name == "rust_analyzer" then
+    if
+        client.name == "tsserver"
+        or client.name == "lua_ls"
+        or client.name == "rust_analyzer"
+        or client.name == "dartls"
+    then
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
     end
