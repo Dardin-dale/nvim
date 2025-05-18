@@ -2,8 +2,7 @@ require "neovide"
 vim.loader.enable()
 require "logan.plugins"
 require "logan"
--- BEGIN ANSIBLE MANAGED BLOCK - WSL CLIPBOARD
--- WSL clipboard integration
+
 if vim.fn.has('wsl') == 1 then
   vim.g.clipboard = {
     name = 'win32yank-wsl',
@@ -18,4 +17,3 @@ if vim.fn.has('wsl') == 1 then
     cache_enabled = true,
   }
 end
--- END ANSIBLE MANAGED BLOCK - WSL CLIPBOARD
