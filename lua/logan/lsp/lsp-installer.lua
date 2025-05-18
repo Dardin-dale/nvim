@@ -50,6 +50,18 @@ mason_lspconfig.setup({
         "taplo",   -- TOML
         "lemminx", -- XML
     },
+    automatic_installation = true,
+    -- Exclude servers that we manually configure below
+    automatic_enable = {
+        exclude = {
+            "lua_ls",
+            "rust_analyzer",
+            "ts_ls",
+            "bashls",
+            "yamlls",
+            "taplo",
+        }
+    },
 })
 
 -- Load custom server settings
