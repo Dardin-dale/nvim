@@ -47,7 +47,7 @@ mason_lspconfig.setup({
         "groovyls",
         -- Configuration languages
         "yamlls",
-        "taplo",   -- TOML
+        "taplo", -- TOML
         "lemminx", -- XML
     },
     automatic_installation = true,
@@ -60,7 +60,7 @@ mason_lspconfig.setup({
             "bashls",
             "yamlls",
             "taplo",
-        }
+        },
     },
 })
 
@@ -145,9 +145,51 @@ lspconfig.taplo.setup({
     },
 })
 
+lspconfig.lemminx.setup({
+    on_attach = opts.on_attach,
+    capabilities = opts.capabilities,
+    settings = {
+        xml = {
+            format = {
+                enabled = true,
+                -- Formatting settings
+                tabSize = 4,
+                insertSpaces = true,
+                splitAttributes = false,
+                joinCDATALines = false,
+                joinCommentLines = false,
+                joinContentLines = false,
+                spaceBeforeEmptyCloseTag = true,
+                preserveEmptyContent = true,
+                preserveAttributeLineBreaks = false,
+                -- This is important for whitespace-sensitive XML
+                preserveSpace = {
+                    "xml:space", -- Standard XML space preservation
+                    "*", -- Preserve space for all elements (use carefully)
+                },
+            },
+            validation = {
+                enabled = true,
+                namespaces = {
+                    enabled = "always",
+                },
+            },
+            completion = {
+                autoCloseTags = true,
+            },
+        },
+    },
+})
+
 -- Set up the remaining servers with default options
 local default_servers = {
-    "html", "cssls", "eslint", "jsonls", "sqlls", "clangd", "groovyls", "lemminx"
+    "html",
+    "cssls",
+    "eslint",
+    "jsonls",
+    "sqlls",
+    "clangd",
+    "groovyls",
 }
 
 for _, server in ipairs(default_servers) do
