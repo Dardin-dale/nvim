@@ -39,7 +39,6 @@ mason_lspconfig.setup({
         "ts_ls",
         "eslint",
         "html",
-        "cssls",
         "jsonls",
         "sqlls",
         "bashls",
@@ -177,6 +176,31 @@ lspconfig.lemminx.setup({
             completion = {
                 autoCloseTags = true,
             },
+        },
+    },
+})
+
+lspconfig.cssls.setup({
+    on_attach = opts.on_attach,
+    capabilities = opts.capabilities,
+    settings = {
+        css = {
+            format = {
+                enable = true,
+            },
+            validate = true,
+        },
+        scss = {
+            format = {
+                enable = true,
+            },
+            validate = true,
+        },
+        less = {
+            format = {
+                enable = true,
+            },
+            validate = true,
         },
     },
 })

@@ -14,9 +14,11 @@ conform.setup({
         typescriptreact = { "prettierd", "prettier" },
         json = { "prettierd", "prettier" },
         html = { "prettierd", "prettier" },
-        css = { "prettierd", "prettier" },
         python = { "black" },
         rust = { "rustfmt" },
+        css = { "prettierd", "prettier" },
+        scss = { "prettierd", "prettier" },
+        less = { "prettierd", "prettier" },
         --[[ java = { "google_java_format_file", "don_conditional_newline" }, ]]
         --[[ java = { "lsp_force", "don_conditional_newline" }, ]]
         dart = { "dart_format", "dart_sed_indent", "don_conditional_newline", "don_try_catch_newline" },
