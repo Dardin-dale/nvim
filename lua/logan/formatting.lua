@@ -19,6 +19,7 @@ conform.setup({
         css = { "prettierd", "prettier" },
         scss = { "prettierd", "prettier" },
         less = { "prettierd", "prettier" },
+        sh = { "shfmt" },
         --[[ java = { "google_java_format_file", "don_conditional_newline" }, ]]
         --[[ java = { "lsp_force", "don_conditional_newline" }, ]]
         dart = { "dart_format", "dart_sed_indent", "don_conditional_newline", "don_try_catch_newline" },
@@ -41,7 +42,9 @@ conform.setup({
         --[[         return vim.fn.executable("google-java-format") == 1 ]]
         --[[     end, ]]
         --[[ }, ]]
-
+        shfmt = {
+            prepend_args = { "-i", "4" },
+        },
         prettier = {
             prepend_args = { "--tab-width", "4", "--print-width", "80" },
         },
@@ -57,6 +60,9 @@ conform.setup({
         xmllint = {
             args = { "--format", "-" },
             stdin = true,
+            env = {
+                XMLLINT_INDENT = "    ", -- 4 spaces
+            },
         },
         taplo = {
             args = { "format", "-" },

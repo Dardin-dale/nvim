@@ -42,6 +42,7 @@ mason_lspconfig.setup({
         "jsonls",
         "sqlls",
         "bashls",
+        "shfmt",
         "clangd",
         "groovyls",
         -- Configuration languages
