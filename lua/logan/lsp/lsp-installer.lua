@@ -49,6 +49,7 @@ mason_lspconfig.setup({
         "yamlls",
         "taplo", -- TOML
         "lemminx", -- XML
+        "xmlformat", -- XML
     },
     automatic_installation = true,
     -- Exclude servers that we manually configure below

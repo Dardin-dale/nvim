@@ -26,7 +26,7 @@ conform.setup({
         -- Config formats
         yaml = { "prettier" },
         toml = { "taplo" },
-        xml = { "xmllint" },
+        xml = { "xmlformat" },
     },
     -- Ensure your other formatters are correctly defined here
     formatters = {
@@ -55,14 +55,11 @@ conform.setup({
             prepend_args = { "--line-length", "80", "--skip-string-normalization" },
         },
         rustfmt = {
-            prepend_args = { "--tab-spaces", "4" },
+            prepend_args = { "--tab-spaces", "4", "--blanks" },
         },
-        xmllint = {
-            args = { "--format", "-" },
+        xmlformat = {
+            args = { "--indent", "4" },
             stdin = true,
-            env = {
-                XMLLINT_INDENT = "    ", -- 4 spaces
-            },
         },
         taplo = {
             args = { "format", "-" },
