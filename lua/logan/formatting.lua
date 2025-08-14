@@ -4,6 +4,9 @@ if not status_ok then
     return
 end
 
+-- Set the initial state. false means formatting is ON by default.
+vim.g.disable_autoformat = false
+
 conform.setup({
     formatters_by_ft = {
         -- Programming languages
@@ -20,9 +23,7 @@ conform.setup({
         scss = { "prettierd", "prettier" },
         less = { "prettierd", "prettier" },
         sh = { "shfmt" },
-        --[[ java = { "google_java_format_file", "don_conditional_newline" }, ]]
-        --[[ java = { "lsp_force", "don_conditional_newline" }, ]]
-        dart = { "dart_format", "dart_sed_indent", "don_conditional_newline", "don_try_catch_newline" },
+        dart = { "dart_format", "dart_indent_4_spaces", "don_conditional_newline", "don_try_catch_newline" },
         -- Config formats
         yaml = { "prettier" },
         toml = { "taplo" },
@@ -67,80 +68,60 @@ conform.setup({
         },
         dart_format = {
             command = "dart",
-            args = { "format", "$FILENAME" },
-            stdin = false, -- dart format modifies the file directly
-            condition = function()
-                local dart_exe = vim.fn.executable("dart") == 1
-                if not dart_exe then
-                    vim.notify("dart executable not found for conform.nvim", vim.log.levels.WARN)
-                end
-                return dart_exe
-            end,
+            args = { "format", "--output", "show" },
+            stdin = true,
         },
         -- Define the sed step, which also needs the file
         dart_sed_indent = {
             command = "sed",
-            args = { "-i", "s/^ */&&/", "$FILENAME" },
-            stdin = false, -- sed -i requires file access
-            condition = function()
-                return vim.fn.executable("sed") == 1
-            end,
+            args = { "s/^ */&&/" },
+            stdin = true, -- sed -i requires file access
+        },
+        dart_indent_4_spaces = {
+            command = "sed",
+            -- This script ignores lines in block comments and doubles leading spaces on others.
+            -- We also add a rule to ignore /// doc comments.
+            args = {
+                --[[ "-e", ]]
+                --[[ "/^\\s*\\/\\/\\//b", -- Skip '///' doc comments ]]
+                "-e",
+                "/\\/\\*/,/\\*\\//b", -- Skip '/* ... */' block comments
+                "-e",
+                "s/^\\( *\\)/\\1\\1/", -- Double leading spaces on all other lines
+            },
+            stdin = true,
         },
         don_conditional_newline = {
             command = "sed",
             -- sed pattern needs careful escaping in Lua string:
             -- \ becomes \\, ( becomes \\( etc. \n is fine, \1 is fine.
             args = {
-                "-i",
                 "s/^\\([[:space:]]*\\)}[[:space:]]*else\\b/\\1}\\n\\1else/",
-                "$FILENAME",
             },
-            stdin = false, -- sed -i operates on the file
-            condition = function()
-                return vim.fn.executable("sed") == 1
-            end,
+            stdin = true, -- sed -i operates on the file
         },
         don_try_catch_newline = {
             command = "sed",
             -- Chain two substitutions: one for catch, one for finally
             -- Remember Lua escaping: \ -> \\, ( -> \\(, ) -> \\)
             args = {
-                "-i",
                 "s/^\\([[:space:]]*\\)}[[:space:]]*catch\\b/\\1}\\n\\1catch/;" -- catch part
                     .. "s/^\\([[:space:]]*\\)}[[:space:]]*finally\\b/\\1}\\n\\1finally/", -- finally part
-                "$FILENAME",
             },
-            stdin = false, -- sed -i operates on the file
-            condition = function()
-                return vim.fn.executable("sed") == 1
-            end,
+            stdin = true,
         },
-        --[[ lsp_force = { ]]
-        --[[     meta = { ]]
-        --[[         url = "https://neovim.io/doc/user/lsp.html", ]]
-        --[[         description = "Forces LSP formatting using vim.lsp.buf.format", ]]
-        --[[     }, ]]
-        --[[     format = function(self, ctx) ]]
-        --[[         local bufnr = ctx.buf ]]
-        --[[]]
-        --[[         -- Format using LSP ]]
-        --[[         vim.lsp.buf.format({ ]]
-        --[[             bufnr = bufnr, ]]
-        --[[             timeout_ms = 5000, ]]
-        --[[             async = false, ]]
-        --[[         }) ]]
-        --[[]]
-        --[[         -- Since we're modifying the buffer directly, return true to indicate success ]]
-        --[[         return true ]]
-        --[[     end, ]]
-        --[[     stdin = false, ]]
-        --[[ }, ]]
     },
     default_format_opts = {
         timeout_ms = 3000,
     },
     format_on_save = {
-        enabled = false,
+        enabled = function(bufnr)
+            -- Disable with a global or buffer-local variable
+            if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+                return false
+            end
+            return true
+        end,
         timeout_ms = 3000,
         lsp_fallback = true,
     },
